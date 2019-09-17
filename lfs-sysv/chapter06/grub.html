@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.60.&nbsp;GRUB-2.04
+      6.60.&nbsp;GRUB-2.02
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
@@ -28,59 +28,58 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="less.html" title="Less-551">Next</a>
+          <a accesskey="n" href="less.html" title="Less-530">Next</a>
           <p>
-            Less-551
+            Less-530
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="en" xml:lang="en">
       <h1 class="sect1">
-        <a id="ch-system-grub" name="ch-system-grub"></a>6.60. GRUB-2.04
+        <a id="ch-system-grub" name="ch-system-grub"></a>6.60. GRUB-2.02
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The GRUB package contains the GRand Unified Bootloader.
+          GRUB 软件包包含多重启动管理器（GRand Unified Bootloader）。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.8 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.6 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">161 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">147 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.60.1. Installation of GRUB
+          6.60.1. 安装 GRUB
         </h2>
         <p>
-          Prepare GRUB for compilation:
+          准备编译 GRUB：
         </p>
-        <pre class="userinput">
-<kbd class="command">./configure --prefix=/usr          \
+        <pre class="userinput"><kbd class=
+        "command">./configure --prefix=/usr          \
             --sbindir=/sbin        \
             --sysconfdir=/etc      \
             --disable-efiemu       \
-            --disable-werror</kbd>
-</pre>
+            --disable-werror</kbd></pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the new configure options:</strong>
+            <strong>新配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -89,8 +88,7 @@
             </dt>
             <dd>
               <p>
-                This allows the build to complete with warnings introduced by
-                more recent Flex versions.
+                允许忽视有更新 Flex 版本提示的警告以完成构建。
               </p>
             </dd>
             <dt>
@@ -99,64 +97,56 @@
             </dt>
             <dd>
               <p>
-                This option minimizes what is built by disabling a feature
-                and testing programs not needed for LFS.
+                这些选项通过停用 LFS 不需要的功能和测试程序最小化构建。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make</kbd></pre>
         <p>
-          This package does not come with a test suite.
+          该软件包没有测试套件。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install
-mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make install
+mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd></pre>
         <p>
-          Using GRUB to make your LFS system bootable will be discussed in
-          <a class="xref" href="../chapter08/grub.html" title=
-          "8.4.&nbsp;Using GRUB to Set Up the Boot Process">Section&nbsp;8.4,
-          “Using GRUB to Set Up the Boot Process”</a>.
+          会在 <a class="xref" href="../chapter08/grub.html" title=
+          "8.4.&nbsp;使用 GRUB 设置启动过程">Section&nbsp;8.4, “使用 GRUB 设置启动过程”</a>
+          介绍通过 GRUB 启动你的 LFS 系统。
         </p>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
-          <a id="contents-gRUB" name="contents-gRUB"></a>6.60.2. Contents of
-          GRUB
+          <a id="contents-gRUB" name="contents-gRUB"></a>6.60.2. GRUB 软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">grub-bios-setup, grub-editenv, grub-file,
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">grub-bios-setup, grub-editenv, grub-file,
               grub-fstest, grub-glue-efi, grub-install, grub-kbdcomp,
               grub-macbless, grub-menulst2cfg, grub-mkconfig, grub-mkimage,
               grub-mklayout, grub-mknetdir, grub-mkpasswd-pbkdf2,
               grub-mkrelpath, grub-mkrescue, grub-mkstandalone,
               grub-ofpathname, grub-probe, grub-reboot, grub-render-label,
-              grub-script-check, grub-set-default, grub-sparc64-setup, and
+              grub-script-check, grub-set-default, grub-sparc64-setup, 和
               grub-syslinux2cfg</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/lib/grub, /etc/grub.d,
-              /usr/share/grub, and /boot/grub (when grub-install is first
-              run)</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/lib/grub, /etc/grub.d, /usr/share/grub, 和
+              boot/grub (when grub-install is first run)</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -174,7 +164,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Is a helper program for grub-install
+                    grub-install 的帮助程序
                   </p>
                 </td>
               </tr>
@@ -188,7 +178,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    A tool to edit the environment block
+                    编辑环境块的工具
                   </p>
                 </td>
               </tr>
@@ -202,7 +192,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Checks if FILE is of the specified type.
+                    检查 FILE 是否为指定的类型
                   </p>
                 </td>
               </tr>
@@ -216,7 +206,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Tool to debug the filesystem driver
+                    调试文件系统驱动的工具
                   </p>
                 </td>
               </tr>
@@ -230,8 +220,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Processes ia32 and amd64 EFI images and glues them
-                    according to Apple format.
+                    处理 ia32 和 amd64 的 EFI 镜像并按照 Apple 的格式将他们粘在一起
                   </p>
                 </td>
               </tr>
@@ -245,7 +234,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Install GRUB on your drive
+                    在你的驱动器上安装 GRUB
                   </p>
                 </td>
               </tr>
@@ -259,8 +248,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Script that converts an xkb layout into one recognized by
-                    GRUB
+                    转换 xkb 布局为 GRUB 可识别样式的脚本
                   </p>
                 </td>
               </tr>
@@ -274,7 +262,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Mac-style bless on HFS or HFS+ files
+                    以 Mac 的风格保护 HFS 或 HFS+ 文件
                   </p>
                 </td>
               </tr>
@@ -288,9 +276,9 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Converts a GRUB Legacy <code class=
-                    "filename">menu.lst</code> into a <code class=
-                    "filename">grub.cfg</code> for use with GRUB 2
+                    为和 GRUB 2 一起使用，转换引导装载程序（GRUB Legacy） <code class=
+                    "filename">menu.lst</code> 为 <code class=
+                    "filename">grub.cfg</code>
                   </p>
                 </td>
               </tr>
@@ -304,7 +292,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Generate a grub config file
+                    生成 grub 配置文件
                   </p>
                 </td>
               </tr>
@@ -318,7 +306,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Make a bootable image of GRUB
+                    创建 GRUB 可启动镜像
                   </p>
                 </td>
               </tr>
@@ -332,7 +320,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Generates a GRUB keyboard layout file
+                    生成 GRUB 键盘布局文件
                   </p>
                 </td>
               </tr>
@@ -346,7 +334,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Prepares a GRUB netboot directory
+                    准备一个 GRUB 网络启动目录
                   </p>
                 </td>
               </tr>
@@ -360,8 +348,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Generates an encrypted PBKDF2 password for use in the
-                    boot menu
+                    生成一个用于启动菜单的加密 PBKDF2 密码
                   </p>
                 </td>
               </tr>
@@ -375,7 +362,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Makes a system pathname relative to its root
+                    生成相对于根目录的系统路径名称
                   </p>
                 </td>
               </tr>
@@ -389,8 +376,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Make a bootable image of GRUB suitable for a floppy disk
-                    or CDROM/DVD
+                    创建适用于软盘或 CDROM/DVD 的可启动 GRUB 镜像
                   </p>
                 </td>
               </tr>
@@ -404,7 +390,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Generates a standalone image
+                    生成一个单独镜像
                   </p>
                 </td>
               </tr>
@@ -418,7 +404,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Is a helper program that prints the path of a GRUB device
+                    打印 GRUB 设备路径的帮助程序
                   </p>
                 </td>
               </tr>
@@ -432,7 +418,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Probe device information for a given path or device
+                    对指定路径或设备检测设备信息
                   </p>
                 </td>
               </tr>
@@ -446,8 +432,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Sets the default boot entry for GRUB for the next boot
-                    only
+                    只为下次启动设置默认 GRUB 启动选项
                   </p>
                 </td>
               </tr>
@@ -461,7 +446,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Render Apple .disk_label for Apple Macs
+                    为 Apple Mac 赋予 Apple 的 .disk_label
                   </p>
                 </td>
               </tr>
@@ -475,7 +460,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Checks GRUB configuration script for syntax errors
+                    检查 GRUB 配置脚本是否有语法错误
                   </p>
                 </td>
               </tr>
@@ -489,7 +474,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Sets the default boot entry for GRUB
+                    为 GRUB 设置默认启动选项
                   </p>
                 </td>
               </tr>
@@ -503,7 +488,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Is a helper program for grub-setup
+                    grub-setup 的帮助程序
                   </p>
                 </td>
               </tr>
@@ -517,7 +502,7 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
                 </td>
                 <td>
                   <p>
-                    Transform a syslinux config file into grub.cfg format
+                    将 syslinux 的配置文件转换至 grub.cfg 格式
                   </p>
                 </td>
               </tr>
@@ -535,18 +520,18 @@ mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions</kbd>
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="less.html" title="Less-551">Next</a>
+          <a accesskey="n" href="less.html" title="Less-530">Next</a>
           <p>
-            Less-551
+            Less-530
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

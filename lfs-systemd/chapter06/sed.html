@@ -12,19 +12,19 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="libcap.html" title="Libcap-2.27">Prev</a>
+          <a accesskey="p" href="libcap.html" title="Libcap-2.26">Prev</a>
           <p>
-            Libcap-2.27
+            Libcap-2.26
           </p>
         </li>
         <li class="next">
@@ -35,11 +35,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
@@ -49,81 +49,71 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Sed package contains a stream editor.
+          Sed 软件包包含一个流编辑器。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.4 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.3 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">32 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">32 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.28.1. Installation of Sed
+          6.28.1. 安装 Sed
         </h2>
         <p>
-          First fix an issue in the LFS environment and remove a failing
-          test:
+          首先修复 LFS 环境中的问题，然后移除一个失败的测试：
         </p>
-        <pre class="userinput">
-<kbd class="command">sed -i 's/usr/tools/'                 build-aux/help2man
-sed -i 's/testsuite.panic-tests.sh//' Makefile.in</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">sed -i 's/usr/tools/'                 build-aux/help2man
+sed -i 's/testsuite.panic-tests.sh//' Makefile.in</kbd></pre>
         <p>
-          Prepare Sed for compilation:
+          准备编译 Sed：
         </p>
-        <pre class="userinput">
-<kbd class="command">./configure --prefix=/usr --bindir=/bin</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">./configure --prefix=/usr --bindir=/bin</kbd></pre>
         <p>
-          Compile the package and generate the HTML documentation:
+          编译软件包并生成 HTML 文档：
         </p>
-        <pre class="userinput">
-<kbd class="command">make
-make html</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make
+make html</kbd></pre>
         <p>
-          To test the results, issue:
+          输入命令查看结果：
         </p>
-        <pre class="userinput">
-<kbd class="command">make check</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make check</kbd></pre>
         <p>
-          Install the package and its documentation:
+          安装软件包和它的文档：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install
+        <pre class="userinput"><kbd class="command">make install
 install -d -m755           /usr/share/doc/sed-4.7
-install -m644 doc/sed.html /usr/share/doc/sed-4.7</kbd>
-</pre>
+install -m644 doc/sed.html /usr/share/doc/sed-4.7</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
-          <a id="contents-sed" name="contents-sed"></a>6.28.2. Contents of
-          Sed
+          <a id="contents-sed" name="contents-sed"></a>6.28.2. Sed 软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed program:</strong>
-              <span class="segbody">sed</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">sed</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directory:</strong>
-              <span class="segbody">/usr/share/doc/sed-4.7</span>
+              <strong class="segtitle">安装目录:</strong> <span class=
+              "segbody">/usr/share/doc/sed-4.7</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -140,7 +130,7 @@ install -m644 doc/sed.html /usr/share/doc/sed-4.7</kbd>
                 </td>
                 <td>
                   <p>
-                    Filters and transforms text files in a single pass
+                    过滤器，一次性转换文本文件
                   </p>
                 </td>
               </tr>
@@ -152,9 +142,9 @@ install -m644 doc/sed.html /usr/share/doc/sed-4.7</kbd>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="libcap.html" title="Libcap-2.27">Prev</a>
+          <a accesskey="p" href="libcap.html" title="Libcap-2.26">Prev</a>
           <p>
-            Libcap-2.27
+            Libcap-2.26
           </p>
         </li>
         <li class="next">
@@ -165,11 +155,11 @@ install -m644 doc/sed.html /usr/share/doc/sed-4.7</kbd>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

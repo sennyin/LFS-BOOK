@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
-        Appendix&nbsp;D.&nbsp;Boot and sysconfig scripts version-20190524
+        Appendix&nbsp;D.&nbsp;启动及系统配置脚本版本-20180820
       </h3>
       <ul>
         <li class="prev">
@@ -36,12 +36,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="scripts.html" title=
-          "Appendix&nbsp;D.&nbsp;Boot and sysconfig scripts version-20190524">
-          Up</a>
+          "Appendix&nbsp;D.&nbsp;启动及系统配置脚本版本-20180820">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
@@ -50,8 +49,7 @@
         <a id="ipv4static" name="ipv4static"></a>D.26.
         /lib/services/ipv4-static
       </h1>
-      <pre class="screen">
-#!/bin/sh
+      <pre class="screen">#!/bin/sh
 ########################################################################
 # Begin /lib/services/ipv4-static
 #
@@ -100,6 +98,12 @@ fi
 case "${2}" in
    up)
       if [ "$(ip addr show ${1} 2&gt;/dev/null | grep ${IP}/)" = "" ]; then
+         
+         # Cosmetic output 
+         if ! $(echo ${SERVICE} | grep -q " "); then 
+           log_info_msg2 "\n" # Terminate the previous message
+         fi
+         
          log_info_msg "Adding IPv4 address ${IP} to the ${1} interface..."
          ip addr add ${args} dev ${1}
          evaluate_retval
@@ -151,12 +155,11 @@ esac
         </li>
         <li class="up">
           <a accesskey="u" href="scripts.html" title=
-          "Appendix&nbsp;D.&nbsp;Boot and sysconfig scripts version-20190524">
-          Up</a>
+          "Appendix&nbsp;D.&nbsp;启动及系统配置脚本版本-20180820">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

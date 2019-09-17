@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.76.&nbsp;Sysvinit-2.95
+      6.76.&nbsp;Sysvinit-2.93
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
@@ -29,90 +29,82 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="eudev.html" title="Eudev-3.2.8">Next</a>
+          <a accesskey="n" href="eudev.html" title="Eudev-3.2.7">Next</a>
           <p>
-            Eudev-3.2.8
+            Eudev-3.2.7
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="en" xml:lang="en">
       <h1 class="sect1">
         <a id="ch-system-sysvinit" name="ch-system-sysvinit"></a>6.76.
-        Sysvinit-2.95
+        Sysvinit-2.93
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Sysvinit package contains programs for controlling the startup,
-          running, and shutdown of the system.
+          Sysvinit 的软件包包含控制系统启动、运行和关闭的程序。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">less than 0.1 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">少于 0.1 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">1.3 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">1.3 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.76.1. Installation of Sysvinit
+          6.76.1. 安装 Sysvinit
         </h2>
         <p>
-          First, apply a patch that removes several programs installed by
-          other packages, clarifies a message, and fixes a compiler warning:
+          首先，打一个补丁移除一些其他软件包安装的程序，改正一个消息，并修复一个编译器的警告：
         </p>
-        <pre class="userinput">
-<kbd class=
-"command">patch -Np1 -i ../sysvinit-2.95-consolidated-1.patch</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">patch -Np1 -i ../sysvinit-2.93-consolidated-1.patch</kbd></pre>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make</kbd></pre>
         <p>
-          This package does not come with a test suite.
+          该软件包没有测试套件。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make install</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
           <a id="contents-sysvinit" name="contents-sysvinit"></a>6.76.2.
-          Contents of Sysvinit
+          Sysvinit 软件包的内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">bootlogd, fstab-decode, halt, init,
-              killall5, poweroff (link to halt), reboot (link to halt),
-              runlevel, shutdown, and telinit (link to init)</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">bootlogd, fstab-decode, halt, init, killall5,
+              poweroff (链接到 halt), reboot (链接到 halt), runlevel, shutdown, 和
+              telinit (链接到 init)</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -130,7 +122,7 @@
                 </td>
                 <td>
                   <p>
-                    Logs boot messages to a log file
+                    记录启动消息至日志文件
                   </p>
                 </td>
               </tr>
@@ -144,7 +136,7 @@
                 </td>
                 <td>
                   <p>
-                    Run a command with fstab-encoded arguments
+                    执行 fstab-encoded 参数的命令
                   </p>
                 </td>
               </tr>
@@ -158,13 +150,11 @@
                 </td>
                 <td>
                   <p>
-                    Normally invokes <span class=
-                    "command"><strong>shutdown</strong></span> with the
-                    <em class="parameter"><code>-h</code></em> option, except
-                    when already in run-level 0, then it tells the kernel to
-                    halt the system; it notes in the file <code class=
-                    "filename">/var/log/wtmp</code> that the system is being
-                    brought down
+                    通常调用命令 <span class=
+                    "command"><strong>shutdown</strong></span> 连带着它的
+                    <em class="parameter"><code>-h</code></em> 选项，排除运行级别已为 0
+                    的情况，吩咐内核关闭系统；将系统即将关闭的消息记录在 <code class=
+                    "filename">/var/log/wtmp</code> 文件中。
                   </p>
                 </td>
               </tr>
@@ -178,10 +168,7 @@
                 </td>
                 <td>
                   <p>
-                    The first process to be started when the kernel has
-                    initialized the hardware which takes over the boot
-                    process and starts all the proceses specified in its
-                    configuration file
+                    内核在初始化硬件时第一个启动的进程，用于接管启动过程并启动所有在配置文件中被指定的进程
                   </p>
                 </td>
               </tr>
@@ -195,8 +182,7 @@
                 </td>
                 <td>
                   <p>
-                    Sends a signal to all processes, except the processes in
-                    its own session so it will not kill its parent shell
+                    给所有进程发送信号，除了其本身所处的会话的进程，所以并不会杀死自己的父 shell
                   </p>
                 </td>
               </tr>
@@ -210,9 +196,8 @@
                 </td>
                 <td>
                   <p>
-                    Tells the kernel to halt the system and switch off the
-                    computer (see <span class=
-                    "command"><strong>halt</strong></span>)
+                    吩咐内核终止系统并关闭计算机（参考 <span class=
+                    "command"><strong>halt</strong></span>）
                   </p>
                 </td>
               </tr>
@@ -226,8 +211,8 @@
                 </td>
                 <td>
                   <p>
-                    Tells the kernel to reboot the system (see <span class=
-                    "command"><strong>halt</strong></span>)
+                    吩咐内核重新启动系统（参考 <span class=
+                    "command"><strong>halt</strong></span>）
                   </p>
                 </td>
               </tr>
@@ -241,9 +226,8 @@
                 </td>
                 <td>
                   <p>
-                    Reports the previous and the current run-level, as noted
-                    in the last run-level record in <code class=
-                    "filename">/var/run/utmp</code>
+                    按照文件 <code class="filename">/var/run/utmp</code>
+                    中记录的最后一个运行级别，汇报之前与当下的运行级别
                   </p>
                 </td>
               </tr>
@@ -257,8 +241,7 @@
                 </td>
                 <td>
                   <p>
-                    Brings the system down in a secure way, signaling all
-                    processes and notifying all logged-in users
+                    以一个安全的方式关闭计算机，给所有的进程发信号，并通知所有登录的用户。
                   </p>
                 </td>
               </tr>
@@ -272,8 +255,8 @@
                 </td>
                 <td>
                   <p>
-                    Tells <span class="command"><strong>init</strong></span>
-                    which run-level to change to
+                    吩咐 <span class="command"><strong>init</strong></span>
+                    切换到哪个运行级别
                   </p>
                 </td>
               </tr>
@@ -292,18 +275,18 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="eudev.html" title="Eudev-3.2.8">Next</a>
+          <a accesskey="n" href="eudev.html" title="Eudev-3.2.7">Next</a>
           <p>
-            Eudev-3.2.8
+            Eudev-3.2.7
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

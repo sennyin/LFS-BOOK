@@ -12,36 +12,36 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
           <a accesskey="p" href="libelf.html" title=
-          "Libelf from Elfutils-0.177">Prev</a>
+          "Libelf 源自 Elfutils-0.176">Prev</a>
           <p>
-            Libelf from Elfutils-0.177
+            Libelf 源自 Elfutils-0.176
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="openssl.html" title=
-          "OpenSSL-1.1.1c">Next</a>
+          "OpenSSL-1.1.1a">Next</a>
           <p>
-            OpenSSL-1.1.1c
+            OpenSSL-1.1.1a
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
@@ -52,27 +52,24 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Libffi library provides a portable, high level programming
-          interface to various calling conventions. This allows a programmer
-          to call any function specified by a call interface description at
-          run time.
+          Libffi 库为各种调用规范提供了一个可移植的，高级编程接口。允许程序员在运行时，通过调用接口描述调用任意指定函数。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.4 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.3 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">7.6 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">7.6 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.49.1. Installation of Libffi
+          6.49.1. 安装 Libffi
         </h2>
         <div class="admon note">
           <img alt="[Note]" src="../images/note.png" />
@@ -80,36 +77,29 @@
             Note
           </h3>
           <p>
-            Similar to GMP, libffi builds with optimizations specific to the
-            proccesor in use. If building for another system, export CFLAGS
-            and CXXFLAGS to specify a generic build for your architecture. If
-            this is not done, all applications that link to libffi will
-            trigger Illegal Operation Errors.
+            Libffi 与 GMP 相似，构建时会根据使用的处理器优化。如果需要构建的是另一个系统，设定 CFLAGS 和 CXXFLAGS
+            为你的架构指定成通用构建。如果不这样做，所有指向 libffi 的链接将触发非法操作错误。
           </p>
         </div>
         <p>
-          Modify the Makefile to install headers into the standard
-          <code class="filename">/usr/include</code> directory instead of
-          <code class="filename">/usr/lib/libffi-3.2.1/include</code>.
+          修改 Makefile 将头文件安装到标准的 <code class="filename">/usr/include</code>
+          目录，而非 <code class="filename">/usr/lib/libffi-3.2.1/include</code>。
         </p>
-        <pre class="userinput">
-<kbd class="command">sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/' \
+        <pre class="userinput"><kbd class=
+        "command">sed -e '/^includesdir/ s/$(libdir).*$/$(includedir)/' \
     -i include/Makefile.in
 
 sed -e '/^includedir/ s/=.*$/=@includedir@/' \
     -e 's/^Cflags: -I${includedir}/Cflags:/' \
-    -i libffi.pc.in</kbd>
-</pre>
+    -i libffi.pc.in</kbd></pre>
         <p>
-          Prepare libffi for compilation:
+          编译 libffi 前的准备：
         </p>
-        <pre class="userinput">
-<kbd class=
-"command">./configure --prefix=/usr --disable-static --with-gcc-arch=native</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">./configure --prefix=/usr --disable-static --with-gcc-arch=native</kbd></pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure option:</strong>
+            <strong>配置选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -118,53 +108,44 @@ sed -e '/^includedir/ s/=.*$/=@includedir@/' \
             </dt>
             <dd>
               <p>
-                Ensure gcc optimizes for the current system. If this is not
-                specified, the system is guessed and the code generated may
-                not be correct for some systems. If the generated code will
-                be copied from the native system to a less capable system,
-                use the less capable system as a parameter. For details about
-                alternative system types, see <a class="ulink" href=
-                "https://gcc.gnu.org/onlinedocs/gcc-9.2.0/gcc/x86-Options.html">
-                the x86 options in the gcc manual</a>.
+                确保 GCC
+                为当前系统进行优化。如果没有指定则会进行猜测，这样生成的代码在某些系统上是不正确的。如果生成的代码想要从本机系统复制到功能较弱的系统，则应该以功能较弱的系统作为参数。有关替代系统类型的详细信息，请参阅
+                <a class="ulink" href=
+                "https://gcc.gnu.org/onlinedocs/gcc-8.2.0/gcc/x86-Options.html">
+                gcc 手册中的 x86 选项</a>。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make</kbd></pre>
         <p>
-          To test the results, issue:
+          用以下命令测试结果：
         </p>
-        <pre class="userinput">
-<kbd class="command">make check</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make check</kbd></pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make install</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
-          <a id="contents-libffi" name="contents-libffi"></a>6.49.2. Contents
-          of Libffi
+          <a id="contents-libffi" name="contents-libffi"></a>6.49.2. Libffi
+          的软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed library:</strong>
-              <span class="segbody">libffi.so</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libffi.so</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -181,7 +162,7 @@ sed -e '/^includedir/ s/=.*$/=@includedir@/' \
                 </td>
                 <td>
                   <p>
-                    contains the libffi API functions.
+                    包含 libffi 的 API 函数。
                   </p>
                 </td>
               </tr>
@@ -194,25 +175,25 @@ sed -e '/^includedir/ s/=.*$/=@includedir@/' \
       <ul>
         <li class="prev">
           <a accesskey="p" href="libelf.html" title=
-          "Libelf from Elfutils-0.177">Prev</a>
+          "Libelf 源自 Elfutils-0.176">Prev</a>
           <p>
-            Libelf from Elfutils-0.177
+            Libelf 源自 Elfutils-0.176
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="openssl.html" title=
-          "OpenSSL-1.1.1c">Next</a>
+          "OpenSSL-1.1.1a">Next</a>
           <p>
-            OpenSSL-1.1.1c
+            OpenSSL-1.1.1a
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

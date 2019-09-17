@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.50.&nbsp;OpenSSL-1.1.1c
+      6.50.&nbsp;OpenSSL-1.1.1a
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
@@ -28,121 +28,103 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="Python.html" title="Python-3.7.4">Next</a>
+          <a accesskey="n" href="Python.html" title="Python-3.7.2">Next</a>
           <p>
-            Python-3.7.4
+            Python-3.7.2
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="en" xml:lang="en">
       <h1 class="sect1">
         <a id="ch-system-openssl" name="ch-system-openssl"></a>6.50.
-        OpenSSL-1.1.1c
+        OpenSSL-1.1.1a
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The OpenSSL package contains management tools and libraries
-          relating to cryptography. These are useful for providing
-          cryptographic functions to other packages, such as OpenSSH, email
-          applications and web browsers (for accessing HTTPS sites).
+          OpenSSL 软件包包含管理工具和加密相关的库。其中提供的这些加密功能对于其他软件包，比方说 OpenSSH，email
+          应用和网页浏览器（访问 HTTPS 站点）来说，十分有用。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">2.3 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">1.7 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">147 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">141 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.50.1. Installation of OpenSSL
+          6.50.1. 安装 OpenSSL
         </h2>
         <p>
-          First, fix a problem identified upstream:
+          编译 OpenSSL 前的准备：
         </p>
-        <pre class="userinput">
-<kbd class=
-"command">sed -i '/\} data/s/ =.*$/;\n    memset(\&amp;data, 0, sizeof(data));/' \
-  crypto/rand/rand_lib.c</kbd>
-</pre>
-        <p>
-          Prepare OpenSSL for compilation:
-        </p>
-        <pre class="userinput">
-<kbd class="command">./config --prefix=/usr         \
+        <pre class="userinput"><kbd class=
+        "command">./config --prefix=/usr         \
          --openssldir=/etc/ssl \
          --libdir=lib          \
          shared                \
-         zlib-dynamic</kbd>
-</pre>
+         zlib-dynamic</kbd></pre>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make</kbd></pre>
         <p>
-          To test the results, issue:
+          查看测试结果，输入：
         </p>
-        <pre class="userinput">
-<kbd class="command">make test</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make test</kbd></pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-make MANSUFFIX=ssl install</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+make MANSUFFIX=ssl install</kbd></pre>
         <p>
-          If desired, install the documentation:
+          如果有需要，安装文档：
         </p>
-        <pre class="userinput">
-<kbd class=
-"command">mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1c
-cp -vfr doc/* /usr/share/doc/openssl-1.1.1c</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">mv -v /usr/share/doc/openssl /usr/share/doc/openssl-1.1.1a
+cp -vfr doc/* /usr/share/doc/openssl-1.1.1a</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
           <a id="contents-openssl" name="contents-openssl"></a>6.50.2.
-          Contents of OpenSSL
+          OpenSSL 软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">c_rehash and openssl</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">c_rehash 和 openssl</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed libraries:</strong>
-              <span class="segbody">libcrypto.{so,a} and libssl.{so,a}</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libcrypto.{so,a} 和 libssl.{so,a}</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/etc/ssl, /usr/include/openssl,
-              /usr/lib/engines and /usr/share/doc/openssl-1.1.1c</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/etc/ssl, /usr/include/openssl, /usr/lib/engines 和
+              /usr/share/doc/openssl-1.1.1a</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -160,9 +142,8 @@ cp -vfr doc/* /usr/share/doc/openssl-1.1.1c</kbd>
                 </td>
                 <td>
                   <p>
-                    is a <span class="application">Perl</span> script that
-                    scans all files in a directory and adds symbolic links to
-                    their hash values.
+                    用于扫描一个目录中的所有文件并为它们的 hash 值添加符号链接的 <span class=
+                    "application">Perl</span> 脚本。
                   </p>
                 </td>
               </tr>
@@ -176,11 +157,9 @@ cp -vfr doc/* /usr/share/doc/openssl-1.1.1c</kbd>
                 </td>
                 <td>
                   <p>
-                    is a command-line tool for using the various cryptography
-                    functions of <span class="application">OpenSSL</span>'s
-                    crypto library from the shell. It can be used for various
-                    functions which are documented in <span class=
-                    "command"><strong>man 1 openssl</strong></span>.
+                    一个从 shell 使用 <span class="application">OpenSSL</span>
+                    的加密库的各种加密功能的命令行工具。功能广泛，十分有用，参考 <span class=
+                    "command"><strong>man 1 openssl</strong></span>。
                   </p>
                 </td>
               </tr>
@@ -193,14 +172,11 @@ cp -vfr doc/* /usr/share/doc/openssl-1.1.1c</kbd>
                 </td>
                 <td>
                   <p>
-                    implements a wide range of cryptographic algorithms used
-                    in various Internet standards. The services provided by
-                    this library are used by the <span class=
-                    "application">OpenSSL</span> implementations of SSL, TLS
-                    and S/MIME, and they have also been used to implement
-                    <span class="application">OpenSSH</span>, <span class=
-                    "application">OpenPGP</span>, and other cryptographic
-                    standards.
+                    实现了各种互联网标准中极大部分加密算法。该库提供的服务，被 <span class=
+                    "application">OpenSSL</span> 用于实现 SSL， TLS 和
+                    S/MIME，并且它们还被用于实现 <span class=
+                    "application">OpenSSH</span>，<span class=
+                    "application">OpenPGP</span>，以及其他加密标准。
                   </p>
                 </td>
               </tr>
@@ -213,10 +189,8 @@ cp -vfr doc/* /usr/share/doc/openssl-1.1.1c</kbd>
                 </td>
                 <td>
                   <p>
-                    implements the Transport Layer Security (TLS v1)
-                    protocol. It provides a rich API, documentation on which
-                    can be found by running <span class="command"><strong>man
-                    3 ssl</strong></span>.
+                    实现传输层安全（TLS v1）协议。提供丰富的 API，文档参见 <span class=
+                    "command"><strong>man 3 ssl</strong></span>。
                   </p>
                 </td>
               </tr>
@@ -234,18 +208,18 @@ cp -vfr doc/* /usr/share/doc/openssl-1.1.1c</kbd>
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="Python.html" title="Python-3.7.4">Next</a>
+          <a accesskey="n" href="Python.html" title="Python-3.7.2">Next</a>
           <p>
-            Python-3.7.4
+            Python-3.7.2
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

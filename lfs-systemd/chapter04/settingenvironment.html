@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      4.4.&nbsp;Setting Up the Environment
+      4.4.&nbsp;设置环境
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,83 +12,72 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;4.&nbsp;Final Preparations
+        Chapter&nbsp;4.&nbsp;最后的准备工作
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="addinguser.html" title=
-          "Adding the LFS User">Prev</a>
+          <a accesskey="p" href="addinguser.html" title="添加 LFS 用户">Prev</a>
           <p>
-            Adding the LFS User
+            添加 LFS 用户
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="aboutsbus.html" title="About SBUs">Next</a>
+          <a accesskey="n" href="aboutsbus.html" title="关于 SBUs">Next</a>
           <p>
-            About SBUs
+            关于 SBUs
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter04.html" title=
-          "Chapter&nbsp;4.&nbsp;Final Preparations">Up</a>
+          "Chapter&nbsp;4.&nbsp;最后的准备工作">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="en" xml:lang="en">
       <h1 class="sect1">
         <a id="ch-tools-settingenviron" name=
-        "ch-tools-settingenviron"></a>4.4. Setting Up the Environment
+        "ch-tools-settingenviron"></a>4.4. 设置环境
       </h1>
       <p>
-        Set up a good working environment by creating two new startup files
-        for the <span class="command"><strong>bash</strong></span> shell.
-        While logged in as user <code class="systemitem">lfs</code>, issue
-        the following command to create a new <code class=
-        "filename">.bash_profile</code>:
+        通过为 <span class="command"><strong>bash</strong></span> shell
+        创建两个开机启动的文件，设置合适的工作环境。当以 <code class="systemitem">lfs</code>
+        用户身份登录时，运行以下命令创建一个新的 <code class="filename">.bash_profile</code> 文件：
       </p>
-      <pre class="userinput">
-<kbd class="command">cat &gt; ~/.bash_profile &lt;&lt; "EOF"
+      <pre class="userinput"><kbd class=
+      "command">cat &gt; ~/.bash_profile &lt;&lt; "EOF"
 <code class=
 "literal">exec env -i HOME=$HOME TERM=$TERM PS1='\u:\w\$ ' /bin/bash</code>
-EOF</kbd>
-</pre>
+EOF</kbd></pre>
       <p>
-        When logged on as user <code class="systemitem">lfs</code>, the
-        initial shell is usually a <span class=
-        "emphasis"><em>login</em></span> shell which reads the <code class=
-        "filename">/etc/profile</code> of the host (probably containing some
-        settings and environment variables) and then <code class=
-        "filename">.bash_profile</code>. The <span class=
-        "command"><strong>exec env -i.../bin/bash</strong></span> command in
-        the <code class="filename">.bash_profile</code> file replaces the
-        running shell with a new one with a completely empty environment,
-        except for the <code class="envar">HOME</code>, <code class=
-        "envar">TERM</code>, and <code class="envar">PS1</code> variables.
-        This ensures that no unwanted and potentially hazardous environment
-        variables from the host system leak into the build environment. The
-        technique used here achieves the goal of ensuring a clean
-        environment.
+        当以 <code class="systemitem">lfs</code> 用户身份登录时，初始 shell 通常是一个
+        <span class="emphasis"><em>login</em></span> 的 shell，它先读取宿主机的
+        <code class="filename">/etc/profile</code> 文件（很可能包括一些设定和环境变量），然后是
+        <code class="filename">.bash_profile</code> 文件。<code class=
+        "filename">.bash_profile</code> 中的命令 <span class=
+        "command"><strong>exec env -i.../bin/bash</strong></span> 用一个除了
+        <code class="envar">HOME</code>，<code class="envar">TERM</code> 和
+        <code class="envar">PS1</code> 变量外，其他环境完全为空的新 shell 代替运行中的
+        shell。这能确保不会有潜在的和意想不到的危险环境变量，从宿主机泄露到构建环境中。这样做主要是为了确保环境的干净。
       </p>
       <p>
-        The new instance of the shell is a <span class=
-        "emphasis"><em>non-login</em></span> shell, which does not read the
-        <code class="filename">/etc/profile</code> or <code class=
-        "filename">.bash_profile</code> files, but rather reads the
-        <code class="filename">.bashrc</code> file instead. Create the
-        <code class="filename">.bashrc</code> file now:
+        新的 shell 实例是一个 <span class="emphasis"><em>non-login</em></span> 的
+        shell，不会读取 <code class="filename">/etc/profile</code> 或者 <code class=
+        "filename">.bash_profile</code> 文件，而是读取 <code class=
+        "filename">.bashrc</code>。现在，创建 <code class="filename">.bashrc</code>
+        文件：
       </p>
-      <pre class="userinput">
-<kbd class="command">cat &gt; ~/.bashrc &lt;&lt; "EOF"
+      <pre class="userinput"><kbd class=
+      "command">cat &gt; ~/.bashrc &lt;&lt; "EOF"
 <code class="literal">set +h
 umask 022
 LFS=/mnt/lfs
@@ -96,93 +85,69 @@ LC_ALL=POSIX
 LFS_TGT=$(uname -m)-lfs-linux-gnu
 PATH=/tools/bin:/bin:/usr/bin
 export LFS LC_ALL LFS_TGT PATH</code>
-EOF</kbd>
-</pre>
+EOF</kbd></pre>
       <p>
-        The <span class="command"><strong>set +h</strong></span> command
-        turns off <span class="command"><strong>bash</strong></span>'s hash
-        function. Hashing is ordinarily a useful feature—<span class=
-        "command"><strong>bash</strong></span> uses a hash table to remember
-        the full path of executable files to avoid searching the <code class=
-        "envar">PATH</code> time and again to find the same executable.
-        However, the new tools should be used as soon as they are installed.
-        By switching off the hash function, the shell will always search the
-        <code class="envar">PATH</code> when a program is to be run. As such,
-        the shell will find the newly compiled tools in <code class=
-        "filename">$LFS/tools</code> as soon as they are available without
-        remembering a previous version of the same program in a different
-        location.
+        <span class="command"><strong>set +h</strong></span> 命令关闭了
+        <span class="command"><strong>bash</strong></span>
+        的哈希功能。哈希通常是个好用的功能——<span class="command"><strong>bash</strong></span>
+        用一个哈希表来记录可执行文件的完整路径，以规避对 <code class="envar">PATH</code>
+        进行检索的时间和对同一个可执行文件的重复寻找。然而，新工具在安装后，应马上使用。通过关闭哈希功能，程序执行的时候就会一直搜索
+        <code class="envar">PATH</code>。如此，新编译的工具一旦可用，shell 便能马上在文件夹
+        <code class="filename">$LFS/tools</code> 中找到它们，而不会去记录存在于不同地方的旧版该程序。
       </p>
       <p>
-        Setting the user file-creation mask (umask) to 022 ensures that newly
-        created files and directories are only writable by their owner, but
-        are readable and executable by anyone (assuming default modes are
-        used by the <code class="function">open(2)</code> system call, new
-        files will end up with permission mode 644 and directories with mode
-        755).
+        设置用户文件新建时的掩码（umask）为 022，以确保新建的文件和目录只有其所有者可写，但任何人都可读可执行（假设系统调用的
+        <code class="function">open(2)</code> 使用的是默认模式，新文件将使用 664 权限模式、文件夹为
+        755 模式）。
       </p>
       <p>
-        The <code class="envar">LFS</code> variable should be set to the
-        chosen mount point.
+        <code class="envar">LFS</code> 变量应设置成选定的挂载点。
       </p>
       <p>
-        The <code class="envar">LC_ALL</code> variable controls the
-        localization of certain programs, making their messages follow the
-        conventions of a specified country. Setting <code class=
-        "envar">LC_ALL</code> to <span class="quote">“<span class=
-        "quote">POSIX</span>”</span> or <span class="quote">“<span class=
-        "quote">C</span>”</span> (the two are equivalent) ensures that
-        everything will work as expected in the chroot environment.
+        <code class="envar">LC_ALL</code> 变量控制某些程序的本地化，使它们的消息遵循特定国家的惯例。设置
+        <code class="envar">LC_ALL</code> 为「POSIX」或「C」（两者是等价的），确保在 chroot
+        环境中一切能如期望的那样进行。
       </p>
       <p>
-        The <code class="envar">LFS_TGT</code> variable sets a non-default,
-        but compatible machine description for use when building our cross
-        compiler and linker and when cross compiling our temporary toolchain.
-        More information is contained in <a class="xref" href=
-        "../chapter05/toolchaintechnotes.html" title=
-        "5.2.&nbsp;Toolchain Technical Notes">Section&nbsp;5.2, “Toolchain
-        Technical Notes”</a>.
+        <code class="envar">LFS_TGT</code>
+        变量设置了一个虽非默认，但在构建交叉编译器、连接器和交叉编译临时工作链时，用得上到的兼容的机器说明。<a class="xref"
+        href="../chapter05/toolchaintechnotes.html" title=
+        "5.2.&nbsp;工具链技术说明">Section&nbsp;5.2, “工具链技术说明”</a>中包含更多信息。
       </p>
       <p>
-        By putting <code class="filename">/tools/bin</code> ahead of the
-        standard <code class="envar">PATH</code>, all the programs installed
-        in <a class="xref" href="../chapter05/chapter05.html" title=
-        "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">Chapter&nbsp;5</a>
-        are picked up by the shell immediately after their installation.
-        This, combined with turning off hashing, limits the risk that old
-        programs are used from the host when the same programs are available
-        in the chapter 5 environment.
+        通过把 <code class="filename">/tools/bin</code> 放在标准 <code class=
+        "envar">PATH</code> 变量的前面，使得所有在 <a class="xref" href=
+        "../chapter05/chapter05.html" title="Chapter&nbsp;5.&nbsp;构建临时系统">第 5
+        章</a> 中安装的程序，一经安装 shell
+        便能马上使用。与之配合的关闭哈希功能，能在第五章环境中的程序在可用的情况下，限制使用宿主机中旧程序的风险。
       </p>
       <p>
-        Finally, to have the environment fully prepared for building the
-        temporary tools, source the just-created user profile:
+        最后，启用刚才创建的用户配置，为构建临时工具完全准备好环境：
       </p>
-      <pre class="userinput">
-<kbd class="command">source ~/.bash_profile</kbd>
-</pre>
+      <pre class="userinput"><kbd class=
+      "command">source ~/.bash_profile</kbd></pre>
     </div>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="addinguser.html" title=
-          "Adding the LFS User">Prev</a>
+          <a accesskey="p" href="addinguser.html" title="添加 LFS 用户">Prev</a>
           <p>
-            Adding the LFS User
+            添加 LFS 用户
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="aboutsbus.html" title="About SBUs">Next</a>
+          <a accesskey="n" href="aboutsbus.html" title="关于 SBUs">Next</a>
           <p>
-            About SBUs
+            关于 SBUs
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter04.html" title=
-          "Chapter&nbsp;4.&nbsp;Final Preparations">Up</a>
+          "Chapter&nbsp;4.&nbsp;最后的准备工作">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      6.72.&nbsp;Systemd-241
+      6.72.&nbsp;systemd-240
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,117 +12,103 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="vim.html" title="Vim-8.1.1846">Prev</a>
+          <a accesskey="p" href="vim.html" title="Vim-8.1">Prev</a>
           <p>
-            Vim-8.1.1846
+            Vim-8.1
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="dbus.html" title="D-Bus-1.12.16">Next</a>
+          <a accesskey="n" href="dbus.html" title="D-Bus-1.12.12">Next</a>
           <p>
-            D-Bus-1.12.16
+            D-Bus-1.12.12
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
     <div class="wrap" lang="en" xml:lang="en">
       <h1 class="sect1">
         <a id="ch-system-systemd" name="ch-system-systemd"></a>6.72.
-        Systemd-241
+        systemd-240
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The systemd package contains programs for controlling the startup,
-          running, and shutdown of the system.
+          systemd 软件包包含用于控制启动、运行和关闭系统的程序。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.4 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">2.4 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">227 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">226 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.72.1. Installation of systemd
+          6.72.1. 安装 systemd
         </h2>
         <p>
-          First, apply a patch to fix issues with systemd-networkd on Linux
-          5.2+ kernels, as well as with AMD Ryzen CPUs:
+          应有该补丁以修复两个严重的安全漏洞：
         </p>
-        <pre class="userinput">
-<kbd class=
-"command">patch -Np1 -i ../systemd-241-networkd_and_rdrand_fixes-1.patch</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">patch -Np1 -i ../systemd-240-security_fixes-2.patch</kbd></pre>
         <p>
-          Create a symlink to work around missing xsltproc:
+          创建符号链接以解决丢失 xsltproc 的问题：
         </p>
-        <pre class="userinput">
-<kbd class="command">ln -sf /tools/bin/true /usr/bin/xsltproc</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">ln -sf /tools/bin/true /usr/bin/xsltproc</kbd></pre>
         <p>
-          Because we have not yet installed the final version of Util-Linux,
-          create links to the libraries in the approprite location:
+          由于我们还未安装 Util-Linux 的最终版本，所以在适当的位置创建指向库的链接：
         </p>
-        <pre class="userinput">
-<kbd class="command">for file in /tools/lib/lib{blkid,mount,uuid}.so*; do
+        <pre class="userinput"><kbd class=
+        "command">for file in /tools/lib/lib{blkid,mount,uuid}*; do
     ln -sf $file /usr/lib/
-done</kbd>
-</pre>
+done</kbd></pre>
         <p>
-          Set up the man pages:
+          设置 man 手册：
         </p>
-        <pre class="userinput">
-<kbd class="command">tar -xf ../systemd-man-pages-241.tar.xz</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">tar -xf ../systemd-man-pages-240.tar.xz</kbd></pre>
         <p>
-          Remove tests that cannot be built in chroot:
+          移除不能在 chroot 下构建的测试：
         </p>
-        <pre class="userinput">
-<kbd class="command">sed '177,$ d' -i src/resolve/meson.build</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">sed '177,$ d' -i src/resolve/meson.build</kbd></pre>
         <p>
-          Remove an unneeded group, <code class="systemitem">render</code>,
-          from the default udev rules:
+          从默认的 udev 规则中删除没有必要的组 <code class="systemitem">render</code>：
         </p>
-        <pre class="userinput">
-<kbd class=
-"command">sed -i 's/GROUP="render", //' rules/50-udev-default.rules.in</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">sed -i 's/GROUP="render", //' rules/50-udev-default.rules.in</kbd></pre>
         <p>
-          Prepare systemd for compilation:
+          systemd 编译前准备：
         </p>
-        <pre class="userinput">
-<kbd class="command">mkdir -p build
+        <pre class="userinput"><kbd class="command">mkdir -p build
 cd       build
 
 PKG_CONFIG_PATH="/usr/lib/pkgconfig:/tools/lib/pkgconfig" \
 LANG=en_US.UTF-8                   \
-CFLAGS+="-Wno-format-overflow"     \
 meson --prefix=/usr                \
       --sysconfdir=/etc            \
       --localstatedir=/var         \
@@ -131,6 +117,7 @@ meson --prefix=/usr                \
       -Ddefault-dnssec=no          \
       -Dfirstboot=false            \
       -Dinstall-tests=false        \
+      -Dkill-path=/bin/kill        \
       -Dkmod-path=/bin/kmod        \
       -Dldconfig=false             \
       -Dmount-path=/bin/mount      \
@@ -141,12 +128,10 @@ meson --prefix=/usr                \
       -Dsysusers=false             \
       -Dumount-path=/bin/umount    \
       -Db_lto=false                \
-      -Drpmmacrosdir=no            \
-      ..</kbd>
-</pre>
+      ..</kbd></pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the meson options:</strong>
+            <strong>选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -155,10 +140,8 @@ meson --prefix=/usr                \
             </dt>
             <dd>
               <p>
-                These switches provide location of binaries needed by systemd
-                at runtime that have not yet been installed, or who's
-                pkgconfig files are currently only in <code class=
-                "filename">/tools/lib/pkgconfig</code>.
+                此类参数提供了 systemd 在运行时所需的二进制的位置，这些二进制文件有些还未安装，有些的 pkgconfig
+                文件现在还在<code class="filename">/tools/lib/pkgconfig</code> 中。
               </p>
             </dd>
             <dt>
@@ -167,7 +150,7 @@ meson --prefix=/usr                \
             </dt>
             <dd>
               <p>
-                This switch turns off the experimental DNSSEC support.
+                此参数关闭了实验性 DNSSEC 的支持。
               </p>
             </dd>
             <dt>
@@ -176,10 +159,7 @@ meson --prefix=/usr                \
             </dt>
             <dd>
               <p>
-                This switch prevents installation of systemd services
-                responsible for setting up the system for the first time.
-                They are not useful for LFS because everything is done
-                manually.
+                此参数将防止负责首次设置系统的 systemd 服务被安装。这对 LFS 没什么用，因为 LFS 的一切都是手动完成的。
               </p>
             </dd>
             <dt>
@@ -188,7 +168,7 @@ meson --prefix=/usr                \
             </dt>
             <dd>
               <p>
-                This switch prevents installation of the compiled tests.
+                此参数将防止编译测试的安装。
               </p>
             </dd>
             <dt>
@@ -197,11 +177,9 @@ meson --prefix=/usr                \
             </dt>
             <dd>
               <p>
-                This switch prevents installation of a systemd unit that runs
-                <span class="command"><strong>ldconfig</strong></span> at
-                boot, which is not useful for source distributions such as
-                LFS and makes the boot time longer. Remove it if the
-                described feature is desired.
+                此参数将防止启动时运行 <span class=
+                "command"><strong>ldconfig</strong></span> 的 systemd 单元被安装，对于
+                LFS 这样的 原生发行版而言毫无作用还会拖慢启动时间。如果你也是这么想的就删掉它。
               </p>
             </dd>
             <dt>
@@ -210,8 +188,7 @@ meson --prefix=/usr                \
             </dt>
             <dd>
               <p>
-                These switches ensure that core programs and shared libraries
-                are installed in the subdirectories of the root partition.
+                此类参数用于确保核心程序和共享库能够安装到根分区的子目录。
               </p>
             </dd>
             <dt>
@@ -220,9 +197,7 @@ meson --prefix=/usr                \
             </dt>
             <dd>
               <p>
-                This switch ensures that systemd will work on systems where
-                /bin, /lib and /sbin directories are not symlinks to their
-                /usr counterparts.
+                此参数用于确保 systemd 可以在 /bin，/lib 和 /sbin 目录工作，而非符号链接指向的 /usr 副本。
               </p>
             </dd>
             <dt>
@@ -231,116 +206,88 @@ meson --prefix=/usr                \
             </dt>
             <dd>
               <p>
-                This switch prevents installation of systemd services
-                responsible for setting up the <code class=
-                "filename">/etc/group</code> and <code class=
-                "filename">/etc/passwd</code> files. Both files were created
-                earlier in this chapter.
-              </p>
-            </dd>
-            <dt>
-              <span class="term"><em class=
-              "parameter"><code>-Drpmmacrosdir=no</code></em></span>
-            </dt>
-            <dd>
-              <p>
-                This switch disables installation of RPM Macros for use with
-                systemd because LFS does not support RPM.
+                此参数用于防止负责于设置 <code class="filename">/etc/group</code> 和
+                <code class="filename">/etc/passwd</code> 文件的 systemd
+                服务被安装。这两个文件都早在前章就创建了。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">LANG=en_US.UTF-8 ninja</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">LANG=en_US.UTF-8 ninja</kbd></pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">LANG=en_US.UTF-8 ninja install</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">LANG=en_US.UTF-8 ninja install</kbd></pre>
         <p>
-          Remove an unnecessary symbolic link:
+          移除不必要的目录：
         </p>
-        <pre class="userinput">
-<kbd class="command">rm -f /usr/bin/xsltproc</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">rm -rfv /usr/lib/rpm
+rm -f /usr/bin/xsltproc</kbd></pre>
         <p>
-          Create the <code class="filename">/etc/machine-id</code> file
-          needed by <span class=
-          "command"><strong>systemd-journald</strong></span>:
+          创建 <code class="filename">/etc/machine-id</code> 需要的 <span class=
+          "command"><strong>systemd-journald</strong></span> 文件：
         </p>
-        <pre class="userinput">
-<kbd class="command">systemd-machine-id-setup</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">systemd-machine-id-setup</kbd></pre>
         <p>
-          Remove symbolic links to Util-Linux libraries:
+          创建 <code class="filename">/lib/systemd/systemd-user-sessions</code>
+          脚本，以允许非特权用户无需 <span class="application">systemd-logind</span> 亦可登录：
         </p>
-        <pre class="userinput">
-<kbd class="command">rm -fv /usr/lib/lib{blkid,uuid,mount}.so*</kbd>
-</pre>
-        <p>
-          Prevent systemd from creating <code class=
-          "filename">/run/nologin</code> to allow unprivileged user logins
-          without <span class="application">systemd-logind</span>:
-        </p>
-        <pre class="userinput">
-<kbd class="command">rm -f /usr/lib/tmpfiles.d/systemd-nologin.conf</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">cat &gt; /lib/systemd/systemd-user-sessions &lt;&lt; "EOF"
+#!/bin/bash
+rm -f /run/nologin
+EOF
+chmod 755 /lib/systemd/systemd-user-sessions</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
           <a id="contents-systemd" name="contents-systemd"></a>6.72.2.
-          Contents of systemd
+          systemd 软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">bootctl, busctl, coredumpctl, halt
-              (symlink to systemctl), hostnamectl, init, journalctl,
-              kernel-install, localectl, loginctl, machinectl, networkctl,
-              portablectl, poweroff (symlink to systemctl), reboot (symlink
-              to systemctl), resolvconf (symlink to resolvectl), resolvectl,
-              runlevel (symlink to systemctl), shutdown (symlink to
-              systemctl), systemctl, systemd-analyze, systemd-ask-password,
-              systemd-cat, systemd-cgls, systemd-cgtop, systemd-delta,
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">bootctl, busctl, coredumpctl, halt, hostnamectl,
+              init, journalctl, kernel-install, localectl, loginctl,
+              machinectl, networkctl, poweroff, reboot, runlevel, shutdown,
+              systemctl, systemd-analyze, systemd-ask-password, systemd-cat,
+              systemd-cgls, systemd-cgtop, systemd-delta,
               systemd-detect-virt, systemd-escape, systemd-hwdb,
-              systemd-id128, systemd-inhibit, systemd-machine-id-setup,
-              systemd-mount, systemd-notify, systemd-nspawn, systemd-path,
-              systemd-resolve (symlink to resolvectl), systemd-run,
-              systemd-socket-activate, systemd-stdio-bridge,
-              systemd-tmpfiles, systemd-tty-ask-password-agent,
-              systemd-umount (symlink to systemd-mount), telinit (symlink to
-              systemctl), timedatectl, and udevadm</span>
+              systemd-inhibit, systemd-machine-id-setup, systemd-mount,
+              systemd-notify, systemd-nspawn, systemd-path, systemd-resolve,
+              systemd-run, systemd-socket-activate, systemd-stdio-bridge,
+              systemd-tmpfiles, systemd-tty-ask-password-agent, telinit,
+              timedatectl, 和 udevadm</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed libraries:</strong>
-              <span class="segbody">libnss_myhostname.so.2,
-              libnss_mymachines.so.2, libnss_resolve.so.2,
-              libnss_systemd.so.2, libsystemd.so, libsystemd-shared-241.so
-              (in /lib/systemd), and libudev.so</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libnss_myhostname.so.2, libnss_mymachines.so.2,
+              libnss_resolve.so.2, libnss_systemd.so.2, libsystemd.so,
+              libsystemd-shared-240.so, 和 libudev.so</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/etc/binfmt.d, /etc/init.d, /etc/kernel,
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/etc/binfmt.d, /etc/init.d, /etc/kernel,
               /etc/modules-load.d, /etc/sysctl.d, /etc/systemd,
               /etc/tmpfiles.d, /etc/udev, /etc/xdg/systemd, /lib/systemd,
               /lib/udev, /usr/include/systemd, /usr/lib/binfmt.d,
               /usr/lib/kernel, /usr/lib/modules-load.d, /usr/lib/sysctl.d,
               /usr/lib/systemd, /usr/lib/tmpfiles.d,
-              /usr/share/doc/systemd-241, /usr/share/factory,
-              /usr/share/systemd, /var/lib/systemd, and
-              /var/log/journal</span>
+              /usr/share/doc/systemd-240, /usr/share/factory,
+              /usr/share/systemd, /var/lib/systemd, 和 /var/log/journal</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -358,7 +305,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to query the firmware and boot manager settings
+                    用于查询固件和启动管理设置
                   </p>
                 </td>
               </tr>
@@ -372,7 +319,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to introspect and monitor the D-Bus bus
+                    用于自检和监控 D-Bus 总线
                   </p>
                 </td>
               </tr>
@@ -386,7 +333,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to retrieve coredumps from the systemd journal
+                    用于检索 systemd 日志生成的核心转储
                   </p>
                 </td>
               </tr>
@@ -400,13 +347,10 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Normally invokes <span class=
-                    "command"><strong>shutdown</strong></span> with the
-                    <em class="parameter"><code>-h</code></em> option, except
-                    when already in run-level 0, then it tells the kernel to
-                    halt the system; it notes in the file <code class=
-                    "filename">/var/log/wtmp</code> that the system is being
-                    brought down
+                    通常调用带 <em class="parameter"><code>-h</code></em> 参数的
+                    <span class="command"><strong>shutdown</strong></span>
+                    命令，除非已经是运行等级 0，然后告诉内核暂停系统；它会在 <code class=
+                    "filename">/var/log/wtmp</code> 文件中标记正准备关闭系统。
                   </p>
                 </td>
               </tr>
@@ -420,8 +364,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to query and change the system hostname and related
-                    settings
+                    用于查询或更改系统名称以及相关的设置
                   </p>
                 </td>
               </tr>
@@ -435,10 +378,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    The first process to be started when the kernel has
-                    initialized the hardware which takes over the boot
-                    process and starts all processes according to its
-                    configuration files
+                    内核初始化硬件后接管启动过程而启动的第一个进程，随后会根据其配置文件，启动其中所有的进程。
                   </p>
                 </td>
               </tr>
@@ -452,7 +392,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to query the contents of the systemd journal
+                    用于查询 systemd 日志的内容
                   </p>
                 </td>
               </tr>
@@ -466,8 +406,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to add and remove kernel and initramfs images to and
-                    from /boot
+                    用于向和从 /boot 中添加或移除内核以及 initramfs 镜像
                   </p>
                 </td>
               </tr>
@@ -481,8 +420,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to query and change the system locale and keyboard
-                    layout settings
+                    用于查询和更改系统区域设置和键盘布局设置
                   </p>
                 </td>
               </tr>
@@ -496,8 +434,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to introspect and control the state of the systemd
-                    Login Manager
+                    用于自检和控制 systemd 登录管理器的状态
                   </p>
                 </td>
               </tr>
@@ -511,8 +448,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to introspect and control the state of the systemd
-                    Virtual Machine and Container Registration Manager
+                    用于自检和控制 systemd 虚拟机和容器注册管理器的状态
                   </p>
                 </td>
               </tr>
@@ -526,23 +462,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to introspect the state of the network links as seen
-                    by systemd-networkd
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    <a id="portablectl" name="portablectl"></a><span class=
-                    "term"><span class=
-                    "command"><strong>portablectl</strong></span></span>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    Used to attach or detach portable services from the local
-                    system
+                    用于检查 systemd-networkd 所看到的网络链接状态
                   </p>
                 </td>
               </tr>
@@ -556,9 +476,8 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Tells the kernel to halt the system and switch off the
-                    computer (see <span class=
-                    "command"><strong>halt</strong></span>)
+                    告诉内核暂停系统并关闭计算机 （查看 <span class=
+                    "command"><strong>halt</strong></span>）
                   </p>
                 </td>
               </tr>
@@ -572,40 +491,8 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Tells the kernel to reboot the system (see <span class=
-                    "command"><strong>halt</strong></span>)
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    <a id="resolvconf" name="resolvconf"></a><span class=
-                    "term"><span class=
-                    "command"><strong>resolvconf</strong></span></span>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    Register DNS server and domain configuration with
-                    <span class=
-                    "command"><strong>systemd-resolved</strong></span>
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    <a id="resolvectl" name="resolvectl"></a><span class=
-                    "term"><span class=
-                    "command"><strong>resolvectl</strong></span></span>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    Send control commands to the network name resolution
-                    manager, or resolve domain names, IPv4 and IPv6
-                    addresses, DNS records, and services.
+                    告诉内核重启系统 （查看 <span class=
+                    "command"><strong>halt</strong></span>）
                   </p>
                 </td>
               </tr>
@@ -619,9 +506,8 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Reports the previous and the current run-level, as noted
-                    in the last run-level record in <code class=
-                    "filename">/var/run/utmp</code>
+                    报告之前和当期的运行等级、即 <code class=
+                    "filename">/var/run/utmp</code> 文件中的最后一个运行等级记录
                   </p>
                 </td>
               </tr>
@@ -635,8 +521,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Brings the system down in a secure way, signaling all
-                    processes and notifying all logged-in users
+                    以安全的方式关闭系统、向所有进程发送信号并通知所有登录的用户
                   </p>
                 </td>
               </tr>
@@ -650,8 +535,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to introspect and control the state of the systemd
-                    system and service manager
+                    用于自检和控制 systemd 系统和服务管理器的状态
                   </p>
                 </td>
               </tr>
@@ -665,8 +549,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to determine system boot-up performance of the
-                    current boot
+                    用于确定当前引导中的系统启动性能
                   </p>
                 </td>
               </tr>
@@ -680,9 +563,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to query a system password or passphrase from the
-                    user, using a question message specified on the command
-                    line
+                    通过命令行中的问题消息用于向用户查询系统密码或口令
                   </p>
                 </td>
               </tr>
@@ -696,8 +577,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to connect STDOUT and STDERR of a process with the
-                    Journal
+                    用于连接进程日志的 STDOUT 和 STDERR
                   </p>
                 </td>
               </tr>
@@ -711,8 +591,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Recursively shows the contents of the selected Linux
-                    control group hierarchy in a tree
+                    以树的形式递归显示指定 Linux 控制组层次结构的内容
                   </p>
                 </td>
               </tr>
@@ -726,9 +605,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Shows the top control groups of the local Linux control
-                    group hierarchy, ordered by their CPU, memory and disk
-                    I/O load
+                    按照 CPU、内存和磁盘 I/O 负载的顺序显示本地 Linux 控制组层次结构的顶层控制组
                   </p>
                 </td>
               </tr>
@@ -742,9 +619,8 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to identify and compare configuration files in
-                    <code class="filename">/etc</code> that override default
-                    counterparts in <code class="filename">/usr</code>
+                    用于识别和比较 <code class="filename">/etc</code> 中覆盖
+                    <code class="filename">/usr</code> 对应部分的配置文件
                   </p>
                 </td>
               </tr>
@@ -758,7 +634,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Detects execution in a virtualized environment
+                    在虚拟化环境中检测执行情况
                   </p>
                 </td>
               </tr>
@@ -772,8 +648,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to escape strings for inclusion in systemd unit
-                    names
+                    用于在 systemd 单元名称中包含转义字符串
                   </p>
                 </td>
               </tr>
@@ -787,21 +662,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to manage hardware database (hwdb)
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    <a id="systemd-id128" name=
-                    "systemd-id128"></a><span class="term"><span class=
-                    "command"><strong>systemd-id128</strong></span></span>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    Generate and print id128 strings
+                    用户管理硬件数据库（hwdb）
                   </p>
                 </td>
               </tr>
@@ -815,8 +676,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to execute a program with a shutdown, sleep or idle
-                    inhibitor lock taken
+                    用于在关机、睡眠或空闲休眠锁时执行程序
                   </p>
                 </td>
               </tr>
@@ -831,10 +691,8 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used by system installer tools to initialize the machine
-                    ID stored in <code class=
-                    "filename">/etc/machine-id</code> at install time with a
-                    randomly generated ID
+                    启动时系统安装程序用随机生成的 ID 初始化保存到 <code class=
+                    "filename">/etc/machine-id</code> 的机器 ID
                   </p>
                 </td>
               </tr>
@@ -848,7 +706,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    A tool to temporarily mount or auto-mount a drive.
+                    是临时挂载或自动挂载驱动器的工具。
                   </p>
                 </td>
               </tr>
@@ -862,8 +720,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used by daemon scripts to notify the init system about
-                    status changes
+                    守护进程脚本用于通知 init 系统状态更改
                   </p>
                 </td>
               </tr>
@@ -877,8 +734,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to run a command or OS in a light-weight namespace
-                    container
+                    用于在轻量级容器空间中运行命令或操作系统
                   </p>
                 </td>
               </tr>
@@ -892,7 +748,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to query system and user paths
+                    用于查询系统和用户路径
                   </p>
                 </td>
               </tr>
@@ -906,8 +762,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to resolve domain names, IPV4 and IPv6 addresses,
-                    DNS resource records, and services
+                    用于解析域名，IPv4 和 IPv6 地址，DNS 资源记录，以及服务
                   </p>
                 </td>
               </tr>
@@ -921,8 +776,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to create and start a transient .service or a .scope
-                    unit and run the specified command in it
+                    用于创建并运行一个临时 .service 或 .scope 单元并在其中运行指定命令
                   </p>
                 </td>
               </tr>
@@ -937,8 +791,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    A tool to listen on socket devices and launch a process
-                    upon connection.
+                    用于监听设备套接字并在连接时启动进程的工具。
                   </p>
                 </td>
               </tr>
@@ -952,24 +805,8 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Creates, deletes and cleans up volatile and temporary
-                    files and directories, based on the configuration file
-                    format and location specified in <code class=
-                    "filename">tmpfiles.d</code> directories
-                  </p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>
-                    <a id="systemd-umount" name=
-                    "systemd-umount"></a><span class="term"><span class=
-                    "command"><strong>systemd-umount</strong></span></span>
-                  </p>
-                </td>
-                <td>
-                  <p>
-                    Unmount mount points
+                    基于配置文件格式和 <code class="filename">tmpfiles.d</code>
+                    指定的位置创建、删除以及清理易变的和临时文件和目录
                   </p>
                 </td>
               </tr>
@@ -984,7 +821,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to list or process pending systemd password requests
+                    用于列出或执行正在等待的 systemd 密码请求
                   </p>
                 </td>
               </tr>
@@ -998,8 +835,8 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Tells <span class="command"><strong>init</strong></span>
-                    which run-level to change to
+                    告诉 <span class="command"><strong>init</strong></span>
+                    要更改的运行等级
                   </p>
                 </td>
               </tr>
@@ -1013,8 +850,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Used to query and change the system clock and its
-                    settings
+                    用于查询和更改系统时间和设置
                   </p>
                 </td>
               </tr>
@@ -1028,10 +864,8 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    Generic udev administration tool: controls the udevd
-                    daemon, provides info from the Udev database, monitors
-                    uevents, waits for uevents to finish, tests udev
-                    configuration, and triggers uevents for a given device
+                    通用 udev 管理工具：控制 udevd 守护进程、从 udev 数据库提供信息、监控 uevent、等待
+                    uevent 完成、检测 udev 配置、为指定设备触发 uevents
                   </p>
                 </td>
               </tr>
@@ -1044,7 +878,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    The main systemd utility library
+                    systemd 主要的实用工具库
                   </p>
                 </td>
               </tr>
@@ -1057,7 +891,7 @@ meson --prefix=/usr                \
                 </td>
                 <td>
                   <p>
-                    A library to access Udev device information
+                    用于获取 udev 设备信息的库
                   </p>
                 </td>
               </tr>
@@ -1069,24 +903,24 @@ meson --prefix=/usr                \
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="vim.html" title="Vim-8.1.1846">Prev</a>
+          <a accesskey="p" href="vim.html" title="Vim-8.1">Prev</a>
           <p>
-            Vim-8.1.1846
+            Vim-8.1
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="dbus.html" title="D-Bus-1.12.16">Next</a>
+          <a accesskey="n" href="dbus.html" title="D-Bus-1.12.12">Next</a>
           <p>
-            D-Bus-1.12.16
+            D-Bus-1.12.12
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

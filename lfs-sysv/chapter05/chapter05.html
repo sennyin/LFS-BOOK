@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      Chapter&nbsp;5.&nbsp;Constructing a Temporary System
+      Chapter&nbsp;5.&nbsp;构建临时系统
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,10 +12,10 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
         Part&nbsp;II.&nbsp;准备构建
@@ -23,16 +23,15 @@
       <ul>
         <li class="prev">
           <a accesskey="p" href="../chapter04/abouttestsuites.html" title=
-          "About the Test Suites">Prev</a>
+          "关于测试套件">Prev</a>
           <p>
-            About the Test Suites
+            关于测试套件
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="introduction.html" title=
-          "Introduction">Next</a>
+          <a accesskey="n" href="introduction.html" title="简介">Next</a>
           <p>
-            Introduction
+            简介
           </p>
         </li>
         <li class="up">
@@ -41,14 +40,14 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
     <div class="chapter" lang="en" xml:lang="en">
       <h1 class="chapter">
         <a id="chapter-temporary-tools" name="chapter-temporary-tools"></a>5.
-        Constructing a Temporary System
+        构建临时系统
       </h1>
       <div class="toc">
         <h3>
@@ -56,35 +55,34 @@
         </h3>
         <ul>
           <li class="sect1">
-            <a href="introduction.html">Introduction</a>
+            <a href="introduction.html">简介</a>
           </li>
           <li class="sect1">
-            <a href="toolchaintechnotes.html">Toolchain Technical Notes</a>
+            <a href="toolchaintechnotes.html">工具链技术说明</a>
           </li>
           <li class="sect1">
-            <a href="generalinstructions.html">General Compilation
-            Instructions</a>
+            <a href="generalinstructions.html">通用编译指南</a>
           </li>
           <li class="sect1">
-            <a href="binutils-pass1.html">Binutils-2.32 - Pass 1</a>
+            <a href="binutils-pass1.html">Binutils-2.32 - 第 1 遍</a>
           </li>
           <li class="sect1">
-            <a href="gcc-pass1.html">GCC-9.2.0 - Pass 1</a>
+            <a href="gcc-pass1.html">GCC-8.2.0 - 第 1 遍</a>
           </li>
           <li class="sect1">
-            <a href="linux-headers.html">Linux-5.2.8 API Headers</a>
+            <a href="linux-headers.html">Linux-4.20.12 API 头文件</a>
           </li>
           <li class="sect1">
-            <a href="glibc.html">Glibc-2.30</a>
+            <a href="glibc.html">Glibc-2.29</a>
           </li>
           <li class="sect1">
-            <a href="gcc-libstdc++.html">Libstdc++ from GCC-9.2.0</a>
+            <a href="gcc-libstdc++.html">GCC-8.2.0 中的 Libstdc++</a>
           </li>
           <li class="sect1">
-            <a href="binutils-pass2.html">Binutils-2.32 - Pass 2</a>
+            <a href="binutils-pass2.html">Binutils-2.32 - 第 2 遍</a>
           </li>
           <li class="sect1">
-            <a href="gcc-pass2.html">GCC-9.2.0 - Pass 2</a>
+            <a href="gcc-pass2.html">GCC-8.2.0 - 第 2 遍</a>
           </li>
           <li class="sect1">
             <a href="tcl.html">Tcl-8.6.9</a>
@@ -105,28 +103,28 @@
             <a href="bash.html">Bash-5.0</a>
           </li>
           <li class="sect1">
-            <a href="bison.html">Bison-3.4.1</a>
+            <a href="bison.html">Bison-3.3.2</a>
           </li>
           <li class="sect1">
-            <a href="bzip2.html">Bzip2-1.0.8</a>
+            <a href="bzip2.html">Bzip2-1.0.6</a>
           </li>
           <li class="sect1">
-            <a href="coreutils.html">Coreutils-8.31</a>
+            <a href="coreutils.html">Coreutils-8.30</a>
           </li>
           <li class="sect1">
             <a href="diffutils.html">Diffutils-3.7</a>
           </li>
           <li class="sect1">
-            <a href="file.html">File-5.37</a>
+            <a href="file.html">File-5.36</a>
           </li>
           <li class="sect1">
             <a href="findutils.html">Findutils-4.6.0</a>
           </li>
           <li class="sect1">
-            <a href="gawk.html">Gawk-5.0.1</a>
+            <a href="gawk.html">Gawk-4.2.1</a>
           </li>
           <li class="sect1">
-            <a href="gettext.html">Gettext-0.20.1</a>
+            <a href="gettext.html">Gettext-0.19.8.1</a>
           </li>
           <li class="sect1">
             <a href="grep.html">Grep-3.3</a>
@@ -141,28 +139,28 @@
             <a href="patch.html">Patch-2.7.6</a>
           </li>
           <li class="sect1">
-            <a href="perl.html">Perl-5.30.0</a>
+            <a href="perl.html">Perl-5.28.1</a>
           </li>
           <li class="sect1">
-            <a href="Python.html">Python-3.7.4</a>
+            <a href="Python.html">Python-3.7.2</a>
           </li>
           <li class="sect1">
             <a href="sed.html">Sed-4.7</a>
           </li>
           <li class="sect1">
-            <a href="tar.html">Tar-1.32</a>
+            <a href="tar.html">Tar-1.31</a>
           </li>
           <li class="sect1">
-            <a href="texinfo.html">Texinfo-6.6</a>
+            <a href="texinfo.html">Texinfo-6.5</a>
           </li>
           <li class="sect1">
             <a href="xz.html">Xz-5.2.4</a>
           </li>
           <li class="sect1">
-            <a href="stripping.html">Stripping</a>
+            <a href="stripping.html">清理无用内容</a>
           </li>
           <li class="sect1">
-            <a href="changingowner.html">Changing Ownership</a>
+            <a href="changingowner.html">改变属主</a>
           </li>
         </ul>
       </div>
@@ -171,16 +169,15 @@
       <ul>
         <li class="prev">
           <a accesskey="p" href="../chapter04/abouttestsuites.html" title=
-          "About the Test Suites">Prev</a>
+          "关于测试套件">Prev</a>
           <p>
-            About the Test Suites
+            关于测试套件
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="introduction.html" title=
-          "Introduction">Next</a>
+          <a accesskey="n" href="introduction.html" title="简介">Next</a>
           <p>
-            Introduction
+            简介
           </p>
         </li>
         <li class="up">
@@ -189,7 +186,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

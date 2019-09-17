@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.1.&nbsp;Introduction
+      7.1.&nbsp;简介
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,148 +12,136 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;7.&nbsp;System Configuration
+        Chapter&nbsp;7.&nbsp;基本系统配置
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="chapter07.html" title=
-          "System Configuration">Prev</a>
+          <a accesskey="p" href="chapter07.html" title="基本系统配置">Prev</a>
           <p>
-            System Configuration
+            基本系统配置
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="network.html" title=
-          "General Network Configuration">Next</a>
+          <a accesskey="n" href="network.html" title="通用网络配置">Next</a>
           <p>
-            General Network Configuration
+            通用网络配置
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "Chapter&nbsp;7.&nbsp;System Configuration">Up</a>
+          "Chapter&nbsp;7.&nbsp;基本系统配置">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="en" xml:lang="en">
       <h1 class="sect1">
         <a id="ch-scripts-introduction" name=
-        "ch-scripts-introduction"></a>7.1. Introduction
+        "ch-scripts-introduction"></a>7.1. 简介
       </h1>
       <p>
-        This chapter discusses configuration files and systemd services.
-        First, the general configuration files needed to set up networking
-        are presented.
+        这一章将会讲解配置文件和 systemd 服务。首先，给出了设置网络需要的通用配置文件。
       </p>
       <div class="itemizedlist">
         <ul>
           <li class="listitem">
             <p>
               <a class="xref" href="network.html" title=
-              "7.2.&nbsp;General Network Configuration">Section&nbsp;7.2,
-              “General Network Configuration.”</a>
+              "7.2.&nbsp;通用网络配置">Section&nbsp;7.2, “通用网络配置”</a>
             </p>
           </li>
           <li class="listitem">
             <p>
               <a class="xref" href="network.html#ch-scripts-hostname" title=
-              "7.2.3.&nbsp;Configuring the system hostname">Section&nbsp;7.2.3,
-              “Configuring the system hostname.”</a>
+              "7.2.3.&nbsp;配置系统主机名称">Section&nbsp;7.2.3, “配置系统主机名称”</a>
             </p>
           </li>
           <li class="listitem">
             <p>
               <a class="xref" href="network.html#ch-scripts-hosts" title=
-              "7.2.4.&nbsp;Customizing the /etc/hosts File">Section&nbsp;7.2.4,
-              “Customizing the /etc/hosts File.”</a>
+              "7.2.4.&nbsp;自定义 /etc/hosts 文件">Section&nbsp;7.2.4, “自定义
+              /etc/hosts 文件”</a>
             </p>
           </li>
         </ul>
       </div>
       <p>
-        Second, issues that affect the proper setup of devices are discussed.
+        然后，讨论可能影响正确的设备配置的问题。
       </p>
       <div class="itemizedlist">
         <ul>
           <li class="listitem">
             <p>
               <a class="xref" href="udev.html" title=
-              "7.3.&nbsp;Overview of Device and Module Handling">Section&nbsp;7.3,
-              “Overview of Device and Module Handling.”</a>
+              "7.3.&nbsp;设备与模块管理概述">Section&nbsp;7.3, “设备与模块管理概述”</a>
             </p>
           </li>
           <li class="listitem">
             <p>
               <a class="xref" href="symlinks.html" title=
-              "7.4.&nbsp;Managing Devices">Section&nbsp;7.4, “Managing
-              Devices.”</a>
+              "7.4.&nbsp;设备管理">Section&nbsp;7.4, “设备管理”</a>
             </p>
           </li>
         </ul>
       </div>
       <p>
-        Third, configuring the system clock and keyboard layout.
+        第三步，配置系统时间和键盘布局。
       </p>
       <div class="itemizedlist">
         <ul>
           <li class="listitem">
             <p>
               <a class="xref" href="clock.html" title=
-              "7.5.&nbsp;Configuring the system clock">Section&nbsp;7.5,
-              “Configuring the system clock.”</a>
+              "7.5.&nbsp;配置系统时间">Section&nbsp;7.5, “配置系统时间”</a>
             </p>
           </li>
           <li class="listitem">
             <p>
               <a class="xref" href="console.html" title=
-              "7.6.&nbsp;Configuring the Linux Console">Section&nbsp;7.6,
-              “Configuring the Linux Console.”</a>
+              "7.6.&nbsp;配置 Linux 控制台">Section&nbsp;7.6, “配置 Linux 控制台”</a>
             </p>
           </li>
         </ul>
       </div>
       <p>
-        Fourth, a brief introduction to the scripts and configuration files
-        used when the user logs into the system.
+        第四步，简单介绍当用户登录系统时用到的脚本和配置文件。
       </p>
       <div class="itemizedlist">
         <ul>
           <li class="listitem">
             <p>
               <a class="xref" href="locale.html" title=
-              "7.7.&nbsp;Configuring the System Locale">Section&nbsp;7.7,
-              “Configuring the System Locale.”</a>
+              "7.7.&nbsp;配置系统语言环境">Section&nbsp;7.7, “配置系统语言环境”</a>
             </p>
           </li>
           <li class="listitem">
             <p>
               <a class="xref" href="inputrc.html" title=
-              "7.8.&nbsp;Creating the /etc/inputrc File">Section&nbsp;7.8,
-              “Creating the /etc/inputrc File.”</a>
+              "7.8.&nbsp;创建 /etc/inputrc 文件">Section&nbsp;7.8, “创建
+              /etc/inputrc 文件”</a>
             </p>
           </li>
         </ul>
       </div>
       <p>
-        And finally, configuring the systemd behavior.
+        最后，配置 systemd。
       </p>
       <div class="itemizedlist">
         <ul>
           <li class="listitem">
             <p>
               <a class="xref" href="systemd-custom.html" title=
-              "7.10.&nbsp;Systemd Usage and Configuration">Section&nbsp;7.10,
-              “Systemd Usage and Configuration.”</a>
+              "7.10.&nbsp;systemd 的用法与配置">Section&nbsp;7.10, “systemd
+              的用法与配置”</a>
             </p>
           </li>
         </ul>
@@ -162,26 +150,24 @@
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="chapter07.html" title=
-          "System Configuration">Prev</a>
+          <a accesskey="p" href="chapter07.html" title="基本系统配置">Prev</a>
           <p>
-            System Configuration
+            基本系统配置
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="network.html" title=
-          "General Network Configuration">Next</a>
+          <a accesskey="n" href="network.html" title="通用网络配置">Next</a>
           <p>
-            General Network Configuration
+            通用网络配置
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "Chapter&nbsp;7.&nbsp;System Configuration">Up</a>
+          "Chapter&nbsp;7.&nbsp;基本系统配置">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

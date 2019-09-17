@@ -12,19 +12,19 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="file.html" title="File-5.37">Prev</a>
+          <a accesskey="p" href="file.html" title="File-5.36">Prev</a>
           <p>
-            File-5.37
+            File-5.36
           </p>
         </li>
         <li class="next">
@@ -35,11 +35,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
@@ -50,54 +50,49 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Readline package is a set of libraries that offers command-line
-          editing and history capabilities.
+          Readline 软件包是提供命令行编辑和历史功能的库的集合。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.1 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.1 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">15 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">15 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.13.1. Installation of Readline
+          6.13.1. 安装 Readline
         </h2>
         <p>
-          Reinstalling Readline will cause the old libraries to be moved to
-          &lt;libraryname&gt;.old. While this is normally not a problem, in
-          some cases it can trigger a linking bug in <span class=
-          "command"><strong>ldconfig</strong></span>. This can be avoided by
-          issuing the following two seds:
+          重装 Readline 会使旧的库移动到
+          &lt;libraryname&gt;.old。通常来说这并不是什么问题，但一些情况下可能引起 <span class=
+          "command"><strong>ldconfig</strong></span> 链接错误。可以通过下面的两个 sed
+          命令避免这个问题：
         </p>
-        <pre class="userinput">
-<kbd class="command">sed -i '/MV.*old/d' Makefile.in
-sed -i '/{OLDSUFF}/c:' support/shlib-install</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">sed -i '/MV.*old/d' Makefile.in
+sed -i '/{OLDSUFF}/c:' support/shlib-install</kbd></pre>
         <p>
-          Prepare Readline for compilation:
+          准备编译 Readline：
         </p>
-        <pre class="userinput">
-<kbd class="command">./configure --prefix=/usr    \
+        <pre class="userinput"><kbd class=
+        "command">./configure --prefix=/usr    \
             --disable-static \
-            --docdir=/usr/share/doc/readline-8.0</kbd>
-</pre>
+            --docdir=/usr/share/doc/readline-8.0</kbd></pre>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make SHLIB_LIBS="-L/tools/lib -lncursesw"</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">make SHLIB_LIBS="-L/tools/lib -lncursesw"</kbd></pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the make option:</strong>
+            <strong>make 选项的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -107,60 +102,55 @@ sed -i '/{OLDSUFF}/c:' support/shlib-install</kbd>
             </dt>
             <dd>
               <p>
-                This option forces Readline to link against the <code class=
-                "filename">libncursesw</code> library.
+                该选项强制 Readline 链接到 <code class="filename">libncursesw</code>
+                库。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          This package does not come with a test suite.
+          该软件包没有测试套件。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make SHLIB_LIBS="-L/tools/lib -lncursesw" install</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">make SHLIB_LIBS="-L/tools/lib -lncursesw" install</kbd></pre>
         <p>
-          Now move the dynamic libraries to a more appropriate location and
-          fix up some permissions and symbolic links:
+          现在移动动态库到更合适的位置并修正一些文件权限和符号链接：
         </p>
-        <pre class="userinput">
-<kbd class="command">mv -v /usr/lib/lib{readline,history}.so.* /lib
+        <pre class="userinput"><kbd class=
+        "command">mv -v /usr/lib/lib{readline,history}.so.* /lib
 chmod -v u+w /lib/lib{readline,history}.so.*
 ln -sfv ../../lib/$(readlink /usr/lib/libreadline.so) /usr/lib/libreadline.so
-ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so</kbd>
-</pre>
+ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so</kbd></pre>
         <p>
-          If desired, install the documentation:
+          如果需要的话，安装帮助文档：
         </p>
-        <pre class="userinput">
-<kbd class=
-"command">install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-8.0</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-8.0</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
           <a id="contents-readline" name="contents-readline"></a>6.13.2.
-          Contents of Readline
+          Readline 软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed libraries:</strong>
-              <span class="segbody">libhistory.so and libreadline.so</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libhistory.so 和 libreadline.so</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/include/readline and
+              <strong class="segtitle">安装目录:</strong> <span class=
+              "segbody">/usr/include/readline, /usr/share/readline, 和
               /usr/share/doc/readline-8.0</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -177,8 +167,7 @@ ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so</kb
                 </td>
                 <td>
                   <p>
-                    Provides a consistent user interface for recalling lines
-                    of history
+                    为重新查看历史行提供一致的用户界面
                   </p>
                 </td>
               </tr>
@@ -191,8 +180,7 @@ ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so</kb
                 </td>
                 <td>
                   <p>
-                    Provides a set of commands for manipulating text entered
-                    in an interactive session of a program.
+                    提供一组用于操纵文本进入交互式会话程序的命令
                   </p>
                 </td>
               </tr>
@@ -204,9 +192,9 @@ ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so</kb
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="file.html" title="File-5.37">Prev</a>
+          <a accesskey="p" href="file.html" title="File-5.36">Prev</a>
           <p>
-            File-5.37
+            File-5.36
           </p>
         </li>
         <li class="next">
@@ -217,11 +205,11 @@ ln -sfv ../../lib/$(readlink /usr/lib/libhistory.so ) /usr/lib/libhistory.so</kb
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

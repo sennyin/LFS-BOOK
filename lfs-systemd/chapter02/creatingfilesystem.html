@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      2.5.&nbsp;Creating a File System on the Partition
+      2.5.&nbsp;在分区上创建文件系统
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,51 +12,46 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;2.&nbsp;Preparing the Host System
+        Chapter&nbsp;2.&nbsp;准备宿主系统
       </h3>
       <ul>
         <li class="prev">
           <a accesskey="p" href="creatingpartition.html" title=
-          "Creating a New Partition">Prev</a>
+          "创建新分区">Prev</a>
           <p>
-            Creating a New Partition
+            创建新分区
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="aboutlfs.html" title=
-          "Setting The $LFS Variable">Next</a>
+          <a accesskey="n" href="aboutlfs.html" title="设置 $LFS 变量">Next</a>
           <p>
-            Setting The $LFS Variable
+            设置 $LFS 变量
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter02.html" title=
-          "Chapter&nbsp;2.&nbsp;Preparing the Host System">Up</a>
+          "Chapter&nbsp;2.&nbsp;准备宿主系统">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="en" xml:lang="en">
       <h1 class="sect1">
         <a id="space-creatingfilesystem" name=
-        "space-creatingfilesystem"></a>2.5. Creating a File System on the
-        Partition
+        "space-creatingfilesystem"></a>2.5. 在分区上创建文件系统
       </h1>
       <p>
-        Now that a blank partition has been set up, the file system can be
-        created. LFS can use any file system recognized by the Linux kernel,
-        but the most common types are ext3 and ext4. The choice of file
-        system can be complex and depends on the characteristics of the files
-        and the size of the partition. For example:
+        现在已经有了一个空的分区，可以创建文件系统了。LFS 可以使用 Linux 内核能识别的任何文件系统，但最常用的类型是 ext3 和
+        ext4。当然，至于具体采用哪种文件系统，应该取决于所要存储的文件特点和分区的大小。例如：
       </p>
       <div class="variablelist">
         <dl class="variablelist">
@@ -65,8 +60,7 @@
           </dt>
           <dd>
             <p>
-              is suitable for small partitions that are updated infrequently
-              such as /boot.
+              适用于那些分区容量不是太大，更新也不频繁的情况，例如 /boot 分区。
             </p>
           </dd>
           <dt>
@@ -74,9 +68,7 @@
           </dt>
           <dd>
             <p>
-              is an upgrade to ext2 that includes a journal to help recover
-              the partition's status in the case of an unclean shutdown. It
-              is commonly used as a general purpose file system.
+              是 ext2 的改进版本，其支持日志功能，能够帮助系统从非正常关机导致的异常中恢复。是常用作一般需求的文件系统。
             </p>
           </dd>
           <dt>
@@ -84,67 +76,60 @@
           </dt>
           <dd>
             <p>
-              is the latest version of the ext file system family of
-              partition types. It provides several new capabilities including
-              nano-second timestamps, creation and use of very large files
-              (16 TB), and speed improvements.
+              是 ext 文件系统的最新版。提供了很多新的特性，包括纳秒级时间戳、创建和使用巨型文件(16TB)、以及速度的提升。
             </p>
           </dd>
         </dl>
       </div>
       <p>
-        Other file systems, including FAT32, NTFS, ReiserFS, JFS, and XFS are
-        useful for specialized purposes. More information about these file
-        systems can be found at <a class="ulink" href=
-        "http://en.wikipedia.org/wiki/Comparison_of_file_systems">http://en.wikipedia.org/wiki/Comparison_of_file_systems</a>.
+        其它文件系统，包括 FAT32、NTFS、ReiserFS、JFS 和 XFS
+        等都在专门领域有其独到的作用。关于这些文件系统更多的信息可以参考<a class="ulink" href=
+        "http://en.wikipedia.org/wiki/Comparison_of_file_systems">http://en.wikipedia.org/wiki/Comparison_of_file_systems</a>。
       </p>
       <p>
-        LFS assumes that the root file system (/) is of type ext4. To create
-        an <code class="systemitem">ext4</code> file system on the LFS
-        partition, run the following:
+        LFS 假设要将根分区（/）的文件系统的类型设置为 ext4。运行如下指令，为 LFS 分区创建 <code class=
+        "systemitem">ext4</code> 文件系统：
       </p>
-      <pre class="userinput">
-<kbd class="command">mkfs -v -t ext4 /dev/<em class=
-"replaceable"><code>&lt;xxx&gt;</code></em></kbd>
-</pre>
+      <pre class="userinput"><kbd class=
+      "command">mkfs -v -t ext4 /dev/<em class=
+      "replaceable"><code>&lt;xxx&gt;</code></em></kbd></pre>
       <p>
-        If you are using an existing <code class="systemitem">swap</code>
-        partition, there is no need to format it. If a new <code class=
-        "systemitem">swap</code> partition was created, it will need to be
-        initialized with this command:
+        请替换 <em class="replaceable"><code>&lt;xxx&gt;</code></em> 为实际的
+        <code class="systemitem">/</code> 分区设备名。
       </p>
-      <pre class="userinput">
-<kbd class="command">mkswap /dev/<em class=
-"replaceable"><code>&lt;yyy&gt;</code></em></kbd>
-</pre>
       <p>
-        Replace <em class="replaceable"><code>&lt;yyy&gt;</code></em> with
-        the name of the <code class="systemitem">swap</code> partition.
+        如果你已经有了现成的 <code class="systemitem">swap</code> 分区,不需要重新格式化。如果是新建的
+        <code class="systemitem">swap</code> 分区，需要用下面的命令初始化：
+      </p>
+      <pre class="userinput"><kbd class="command">mkswap /dev/<em class=
+      "replaceable"><code>&lt;yyy&gt;</code></em></kbd></pre>
+      <p>
+        请替换 <em class="replaceable"><code>&lt;yyy&gt;</code></em> 为实际的
+        <code class="systemitem">swap</code> 分区设备名。
       </p>
     </div>
     <div class="navfooter">
       <ul>
         <li class="prev">
           <a accesskey="p" href="creatingpartition.html" title=
-          "Creating a New Partition">Prev</a>
+          "创建新分区">Prev</a>
           <p>
-            Creating a New Partition
+            创建新分区
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="aboutlfs.html" title=
-          "Setting The $LFS Variable">Next</a>
+          <a accesskey="n" href="aboutlfs.html" title="设置 $LFS 变量">Next</a>
           <p>
-            Setting The $LFS Variable
+            设置 $LFS 变量
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter02.html" title=
-          "Chapter&nbsp;2.&nbsp;Preparing the Host System">Up</a>
+          "Chapter&nbsp;2.&nbsp;准备宿主系统">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

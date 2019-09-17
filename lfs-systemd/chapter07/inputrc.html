@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.8.&nbsp;Creating the /etc/inputrc File
+      7.8.&nbsp;创建 /etc/inputrc 文件
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,75 +12,66 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;7.&nbsp;System Configuration
+        Chapter&nbsp;7.&nbsp;基本系统配置
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="locale.html" title=
-          "Configuring the System Locale">Prev</a>
+          <a accesskey="p" href="locale.html" title="配置系统语言环境">Prev</a>
           <p>
-            Configuring the System Locale
+            配置系统语言环境
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="etcshells.html" title=
-          "Creating the /etc/shells File">Next</a>
+          "创建 /etc/shells 文件">Next</a>
           <p>
-            Creating the /etc/shells File
+            创建 /etc/shells 文件
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "Chapter&nbsp;7.&nbsp;System Configuration">Up</a>
+          "Chapter&nbsp;7.&nbsp;基本系统配置">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="en" xml:lang="en">
       <h1 class="sect1">
-        <a id="ch-scripts-inputrc" name="ch-scripts-inputrc"></a>7.8.
-        Creating the /etc/inputrc File
+        <a id="ch-scripts-inputrc" name="ch-scripts-inputrc"></a>7.8. 创建
+        /etc/inputrc 文件
       </h1>
       <p>
-        The <code class="filename">inputrc</code> file is the configuration
-        file for the Readline library, which provides editing capabilities
-        while the user is entering a line from the terminal. It works by
-        translating keyboard inputs into specific actions. Readline is used
-        by Bash and most other shells as well as many other applications.
+        <code class="filename">inputrc</code> 文件的作用是告知系统应该以怎样的键盘布局处理键盘。此文件对于
+        readline —— 输入相关库，或者是一些 shell （例如 bash 等）来说十分重要。
       </p>
       <p>
-        Most people do not need user-specific functionality so the command
-        below creates a global <code class="filename">/etc/inputrc</code>
-        used by everyone who logs in. If you later decide you need to
-        override the defaults on a per-user basis, you can create a
-        <code class="filename">.inputrc</code> file in the user's home
-        directory with the modified mappings.
+        对于大部分用户来说，都不使用那些奇奇怪怪的键盘映射，所以，可以通过以下的命令建立一个全局的 <code class=
+        "filename">/etc/inputrc</code> 以供所有用户使用。如果需要更改某一个用户的键盘映射，仅需要在那个用户的
+        HOME 目录下建立一个 <code class="filename">.inputrc</code>
+        文件，然后修改对应的键盘映射就可以了。
       </p>
       <p>
-        For more information on how to edit the <code class=
-        "filename">inputrc</code> file, see <span class=
-        "command"><strong>info bash</strong></span> under the <span class=
-        "emphasis"><em>Readline Init File</em></span> section. <span class=
-        "command"><strong>info readline</strong></span> is also a good source
-        of information.
+        如果需要了解更多有关如何编辑 <code class="filename">inputrc</code> 文件的信息，可以查看
+        <span class="command"><strong>info bash</strong></span> 中
+        <span class="emphasis"><em>Readline Init File</em></span> 一节。其实查看
+        <span class="command"><strong>info readline</strong></span>
+        也可以获得不少有用的东西。
       </p>
       <p>
-        Below is a generic global <code class="filename">inputrc</code> along
-        with comments to explain what the various options do. Note that
-        comments cannot be on the same line as commands. Create the file
-        using the following command:
+        下面显示的就是通用的 <code class="filename">inputrc</code> 文件，其中包含有 “#”
+        的都是注释行（需要注意的是，此文件不支持在设置后跟随注释）。使用以下命令创建此文件：
       </p>
-      <pre class="userinput">
-<kbd class="command">cat &gt; /etc/inputrc &lt;&lt; "EOF"
+      <pre class="userinput"><kbd class=
+      "command">cat &gt; /etc/inputrc &lt;&lt; "EOF"
 <code class="literal"># Begin /etc/inputrc
 # Modified by Chris Lynn &lt;roryo@roryo.dynup.net&gt;
 
@@ -122,32 +113,30 @@ set bell-style none
 "\e[F": end-of-line
 
 # End /etc/inputrc</code>
-EOF</kbd>
-</pre>
+EOF</kbd></pre>
     </div>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="locale.html" title=
-          "Configuring the System Locale">Prev</a>
+          <a accesskey="p" href="locale.html" title="配置系统语言环境">Prev</a>
           <p>
-            Configuring the System Locale
+            配置系统语言环境
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="etcshells.html" title=
-          "Creating the /etc/shells File">Next</a>
+          "创建 /etc/shells 文件">Next</a>
           <p>
-            Creating the /etc/shells File
+            创建 /etc/shells 文件
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "Chapter&nbsp;7.&nbsp;System Configuration">Up</a>
+          "Chapter&nbsp;7.&nbsp;基本系统配置">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

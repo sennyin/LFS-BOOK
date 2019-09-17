@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      Appendix&nbsp;C.&nbsp;Dependencies
+      Appendix&nbsp;C.&nbsp;依赖关系
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,27 +12,26 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
         Part&nbsp;IV.&nbsp;附录
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="acknowledgments.html" title=
-          "Acknowledgments">Prev</a>
+          <a accesskey="p" href="acknowledgments.html" title="致谢">Prev</a>
           <p>
-            Acknowledgments
+            致谢
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="../scripts/scripts.html" title=
-          "Boot and sysconfig scripts version-20190524">Next</a>
+          "启动及系统配置脚本版本-20180820">Next</a>
           <p>
-            Boot and sysconfig scripts version-20190524
+            启动及系统配置脚本版本-20180820
           </p>
         </li>
         <li class="up">
@@ -41,44 +40,30 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
     <div class="appendix">
       <h1 class="appendix">
-        <a id="appendixc" name="appendixc"></a>C. Dependencies
+        <a id="appendixc" name="appendixc"></a>C. 依赖关系
       </h1>
       <p>
-        Every package built in LFS relies on one or more other packages in
-        order to build and install properly. Some packages even participate
-        in circular dependencies, that is, the first package depends on the
-        second which in turn depends on the first. Because of these
-        dependencies, the order in which packages are built in LFS is very
-        important. The purpose of this page is to document the dependencies
-        of each package built in LFS.
+        LFS
+        中构建或安装的每一个包或多或少都会依赖于其它的包，甚至有些包甚至是循环依赖关系：第一个包依赖于第二个包，反过来，第二个包的生成或者是安装又需要第
+        一个包。因为存在这些依赖关系，所以在构建 LFS 系统的时候，软件包的编译或安装的顺序是十分重要的。本章的目的就是告知用户在构建 LFS
+        时每一个包的依赖项。
       </p>
       <p>
-        For each package we build, we have listed three, and sometimes four,
-        types of dependencies. The first lists what other packages need to be
-        available in order to compile and install the package in question.
-        The second lists what packages, in addition to those on the first
-        list, need to be available in order to run the test suites. The third
-        list of dependencies are packages that require this package to be
-        built and installed in its final location before they are built and
-        installed. In most cases, this is because these packages will hard
-        code paths to binaries within their scripts. If not built in a
-        certain order, this could result in paths of /tools/bin/[binary]
-        being placed inside scripts installed to the final system. This is
-        obviously not desirable.
+        对于所有需要编译的软件包，我们列举出三种或者四种类型的依赖。第一种类型是「安装必选依赖」，否则在编译和安装的时候会出现问题。第二类是「测试套件依赖」，假如运行一些测试套件，除了第一类的必须安装外，第二类也需要安装。第三类是「必须之前安装」，此类需要在编译和安装之前就安装。在大多数情况下，是因为它们软件包中的脚本包含有到二进制文件的硬编码。如果不按照顺序编译它们，将会导致
+        /tools/bin/"binary"
+        路径变为真实路径写入脚本，然后安装到最终系统中去，这显然是不合适的。（译者注：这句话写的不是太清楚，大概解释一下：在真实系统中，可能会在某些脚本
+        中出现这样的路径信息：/usr/bin/vi，但是假如因为安装顺序的问题，这个路径就有可能变成
+        /tools/usr/bin/vi，最终导致脚本不能正常的运行，这显然是错误的。）
       </p>
       <p>
-        The last list of dependencies are optional packages that are not
-        addressed in LFS, but could be useful to the user. These packages may
-        have additional mandatory or optional dependencies of their own. For
-        these dependencies, the recommended practice is to install them after
-        completion of the LFS book and then go back and rebuild the LFS
-        package. In several cases, re-installation is addressed in BLFS.
+        最后一类提及的「可供选择依赖」，安装方法在此文档类并没有提及，但是这些程序往往对用户来说又都是极其有用。这些软件包可能又有属于自己的「安装必选依赖」或者是「可用选择依赖」。对于这些依赖关系，推荐的做法是在学习完本书之后回到重建
+        LFS 包。在大多数情况下，重新安装的问题都记录在 BLFS 中。
       </p>
       <h2>
         <a id="acl-dep" name="acl-dep"></a>Acl
@@ -86,34 +71,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Attr, Bash, Binutils, Coreutils, GCC,
-            Gettext, Grep, M4, Make, Perl, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Attr, Bash, Binutils, Coreutils, GCC, Gettext, Grep,
+            M4, Make, Perl, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Automake, Diffutils, Findutils, and
-            Libtool</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Automake, Diffutils, Findutils, 和 Libtool</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Coreutils, Sed, Tar, and Vim</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Coreutils, Sed, Tar, 和 Vim</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -123,34 +107,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Grep, M4, Make, Perl, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Grep, M4,
+            Make, Perl, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Automake, Diffutils, Findutils, and
-            Libtool</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Automake, Diffutils, Findutils, 和 Libtool</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Acl and Libcap</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Acl 和 Libcap</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -160,34 +143,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Coreutils, Grep, M4, Make, Perl, Sed,
-            and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Coreutils, Grep, M4, Make, Perl, Sed, 和
+            Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Automake, Diffutils, Findutils, GCC, and
-            Libtool</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Automake, Diffutils, Findutils, GCC, 和 Libtool</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Automake</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Automake</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Emacs</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Emacs</span>
           </div>
         </div>
       </div>
@@ -197,35 +179,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Autoconf, Bash, Coreutils, Gettext, Grep,
-            M4, Make, Perl, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Autoconf, Bash, Coreutils, Gettext, Grep, M4, Make,
+            Perl, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Binutils, Bison, Bzip2, DejaGNU, Diffutils,
-            Expect, Findutils, Flex, GCC, Gettext, Gzip, Libtool, and
-            Tar</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Binutils, Bison, Bzip2, DejaGNU, Diffutils, Expect,
+            Findutils, Flex, GCC, Gettext, Gzip, Libtool, 和 Tar</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -235,34 +216,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Bison, Coreutils,
-            Diffutils, Gawk, GCC, Glibc, Grep, Make, Ncurses, Patch,
-            Readline, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Bison, Coreutils, Diffutils, Gawk, GCC,
+            Glibc, Grep, Make, Ncurses, Patch, Readline, Sed, 和
+            Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Shadow</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Shadow</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Xorg</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Xorg</span>
           </div>
         </div>
       </div>
@@ -272,33 +253,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Bison, Coreutils, GCC,
-            Glibc, Grep, Make, Perl, and Readline</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Bison, Coreutils, GCC, Glibc, Grep,
+            Make, 和 Readline</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Gawk</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Gawk</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Linux Kernel</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Linux Kernel</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -308,33 +289,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, File,
-            Gawk, GCC, Glibc, Grep, Make, Perl, Sed, Texinfo and Zlib</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, File, Gawk, GCC,
+            Glibc, Grep, Make, Perl, Sed, Texinfo 和 Zlib</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">DejaGNU and Expect</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">DejaGNU 和 Expect</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -344,33 +325,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, Grep, M4, Make, Perl, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, Grep,
+            M4, Make, Perl, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils, Findutils, and Flex</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils, Findutils, 和 Flex</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Kbd and Tar</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Kbd 和 Tar</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Doxygen (test suite)</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Doxygen (test suite)</span>
           </div>
         </div>
       </div>
@@ -380,33 +361,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, GCC,
-            Glibc, Make, and Patch</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, GCC, Glibc, Make,
+            和 Patch</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -416,32 +397,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">GCC, Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">GCC, Grep, Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -451,36 +432,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, GMP, Grep, Make, Patch, Perl, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, GMP,
+            Grep, Make, Patch, Perl, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils, E2fsprogs, Findutils, Shadow,
-            and Util-linux</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils, E2fsprogs, Findutils, Shadow, 和
+            Util-linux</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Bash, Diffutils, Eudev, Findutils, and
-            Man-DB</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Bash, Diffutils, Eudev, Findutils, 和 Man-DB</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Perl Expect and IO:Tty modules (for test
-            suite)</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Perl Expect 和 IO:Tty modules (for test suite)</span>
           </div>
         </div>
       </div>
@@ -490,33 +469,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Coreutils, Diffutils, GCC, Grep,
-            Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Coreutils, Diffutils, GCC, Grep, Make, 和
+            Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -526,33 +505,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Gawk, GCC,
-            Gettext, Glibc, Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Gawk, GCC, Gettext, Glibc,
+            Grep, Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Perl</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Perl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -562,33 +541,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Glibc, Grep, Gzip, Make, Sed, Texinfo, and Util-linux</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC, Glibc,
+            Grep, Gzip, Make, Sed, Texinfo, 和 Util-linux</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Procps-ng and Psmisc</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Procps-ng 和 Psmisc</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -598,33 +577,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Gawk, GCC,
-            Glibc, Grep, Gperf, Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Gawk, GCC, Glibc, Grep,
+            Gperf, Make, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -634,33 +613,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Gawk, GCC,
-            Glibc, Grep, Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Gawk, GCC, Glibc, Grep,
+            Make, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">XML::Parser</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">XML::Parser</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -670,33 +649,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, GCC,
-            Glibc, Grep, Make, Patch, Sed, and Tcl</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, GCC, Glibc, Grep,
+            Make, Patch, Sed, 和 Tcl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -706,33 +685,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Glibc, Grep, Make, Sed, and Zlib</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC, Glibc,
+            Grep, Make, Sed, 和 Zlib</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -742,33 +721,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, Grep,
+            Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">DejaGNU, Diffutils, and Expect</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">DejaGNU, Diffutils, 和 Expect</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -778,33 +757,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, Grep, M4, Make, Patch, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, Grep,
+            M4, Make, Patch, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Bison and Gawk</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Bison 和 Gawk</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">IPRoute2, Kbd, and Man-DB</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">IPRoute2, Kbd, 和 Man-DB</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -814,34 +793,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, GMP, Grep, Make, MPFR, Patch, Readline, Sed, and
-            Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, GMP,
+            Grep, Make, MPFR, Patch, Readline, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -851,34 +829,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils,
-            Findutils, Gawk, GCC, Gettext, Glibc, GMP, Grep, M4, Make, MPC,
-            MPFR, Patch, Perl, Sed, Tar, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Findutils, Gawk,
+            GCC, Gettext, Glibc, GMP, Grep, M4, Make, MPC, MPFR, Patch, Perl,
+            Sed, Tar, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">DejaGNU, Expect, and Shadow</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">DejaGNU, Expect, 和 Shadow</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody"><a class="ulink" href=
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody"><a class="ulink" href=
             "http://gcc.gnu.org/wiki/GNAT">GNAT</a> and <a class="ulink"
             href="https://repo.or.cz/isl.git">ISL</a></span>
           </div>
@@ -890,33 +868,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, GCC,
-            Grep, Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, GCC, Grep, Make,
+            和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -926,33 +904,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Gawk, GCC,
-            Glibc, Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Gawk, GCC, Glibc, Grep,
+            Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils, Perl, and Tcl</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils, Perl, 和 Tcl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Automake</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Automake</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -962,34 +940,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Gettext, Grep, Gzip, Linux API Headers, Make, Perl, Python,
-            Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC,
+            Gettext, Grep, Gzip, Linux API Headers, Make, Perl, Sed, 和
+            Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">File</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">File</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -999,33 +977,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Glibc, Grep, M4, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC, Glibc,
+            Grep, M4, Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">MPFR and GCC</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">MPFR 和 GCC</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1035,33 +1013,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc, and
-            Make</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, 和 Make</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils and Expect</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils 和 Expect</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1071,33 +1048,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, GCC,
-            Gettext, Glibc, Grep, Make, Patch, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, GCC, Gettext,
+            Glibc, Grep, Make, Patch, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Gawk</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Gawk</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Man-DB</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Man-DB</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Pcre</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Pcre</span>
           </div>
         </div>
       </div>
@@ -1107,33 +1084,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Bison, Coreutils, Gawk,
-            GCC, Glibc, Grep, Make, Patch, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Bison, Coreutils, Gawk, GCC, Glibc,
+            Grep, Make, Patch, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Man-DB and Perl</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Man-DB 和 Perl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">GPL Ghostscript</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">GPL Ghostscript</span>
           </div>
         </div>
       </div>
@@ -1143,34 +1120,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Bison, Coreutils,
-            Diffutils, GCC, Gettext, Glibc, Grep, Make, Ncurses, Sed,
-            Texinfo, and Xz</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Bison, Coreutils, Diffutils, GCC,
+            Gettext, Glibc, Grep, Make, Ncurses, Sed, Texinfo, 和 Xz</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1180,33 +1156,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc,
-            Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, Grep, Make, Sed,
+            和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils and Less</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils 和 Less</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Man-DB</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Man-DB</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1216,32 +1192,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Coreutils, Gawk, and Make</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Coreutils, Gawk, 和 Make</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Perl</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Perl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1251,33 +1227,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc,
-            Grep, Make, Ncurses, Patch, Sed, Texinfo, and Zlib</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, Grep, Make,
+            Ncurses, Patch, Sed, Texinfo, 和 Zlib</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Tar</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Tar</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1287,8 +1263,8 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Gawk, Glibc, Make, Perl, Sed, and
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Gawk, Glibc, Make, Perl, Sed, 和
             XML::Parser</span>
           </div>
         </div>
@@ -1296,24 +1272,24 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Perl</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Perl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1323,33 +1299,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Bison, Coreutils, Flex, GCC, Glibc,
-            Make, and Linux API Headers</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Bison, Coreutils, Flex, GCC, Glibc, Make, 和 Linux
+            API Headers</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1359,33 +1335,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Bison, Check, Coreutils,
-            Flex, GCC, Gettext, Glibc, Gzip, Make, Patch, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Bison, Check, Coreutils, Flex, GCC,
+            Gettext, Glibc, Gzip, Make, Patch, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1395,34 +1371,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Bison, Coreutils, Flex,
-            GCC, Gettext, Glibc, Gzip, Make, Pkg-config, Sed, Xz-Utils, and
-            Zlib</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Bison, Coreutils, Flex, GCC, Gettext,
+            Glibc, Gzip, Make, Sed, Xz-Utils, 和 Zlib</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Eudev</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Eudev</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1432,33 +1407,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, GCC,
-            Glibc, Grep, Make, Ncurses, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, GCC, Glibc, Grep,
+            Make, Ncurses, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Gzip</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Gzip</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Pcre</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Pcre</span>
           </div>
         </div>
       </div>
@@ -1468,33 +1443,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Attr, Bash, Binutils, Coreutils, GCC,
-            Glibc, Perl, Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Attr, Bash, Binutils, Coreutils, GCC, Glibc, Perl,
+            Make, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Linux-PAM</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Linux-PAM</span>
           </div>
         </div>
       </div>
@@ -1504,33 +1479,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc, and
-            Make</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, 和 Make</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Linux Kernel</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Linux Kernel</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1540,33 +1514,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc,
-            Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, Make, 和
+            Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">DejaGnu</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">DejaGnu</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Python</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Python</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1576,33 +1550,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Glibc, Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC, Glibc,
+            Grep, Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Check</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Check</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Man-DB</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Man-DB</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1612,33 +1586,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Glibc, Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC, Glibc,
+            Grep, Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Autoconf, Automake, and Findutils</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Autoconf, Automake, 和 Findutils</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1648,34 +1622,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Bc, Binutils, Coreutils, Diffutils,
-            Findutils, GCC, Glibc, Grep, Gzip, Kmod, Libelf, Make, Ncurses,
-            OpenSSL, Perl, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Bc, Binutils, Coreutils, Diffutils, Findutils,
+            GCC, Glibc, Grep, Gzip, Kmod, Libelf, Make, Ncurses, OpenSSL,
+            Perl, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1685,33 +1659,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc,
-            Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, Grep, Make, Sed,
+            and Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Autoconf and Bison</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Autoconf 和 Bison</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">libsigsegv</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">libsigsegv</span>
           </div>
         </div>
       </div>
@@ -1721,33 +1695,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, Grep,
+            Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Perl and Procps-ng</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Perl 和 Procps-ng</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1757,34 +1731,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Bzip2, Coreutils, Flex,
-            GCC, GDBM, Gettext, Glibc, Grep, Groff, Gzip, Less, Libpipeline,
-            Make, Sed, and Xz</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Bzip2, Coreutils, Flex, GCC, GDBM,
+            Gettext, Glibc, Grep, Groff, Gzip, Less, Libpipeline, Make, Sed,
+            和 Xz</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Util-linux</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Util-linux</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1794,32 +1768,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Coreutils, and Make</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Coreutils, 和 Make</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1829,32 +1803,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Ninja and Python</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Ninja 和 Python</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Systemd</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1864,33 +1838,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Glibc, Grep, GMP, Make, MPFR, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC, Glibc,
+            Grep, GMP, Make, MPFR, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">GCC</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">GCC</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1900,33 +1874,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Glibc, Grep, GMP, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC, Glibc,
+            Grep, GMP, Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Gawk and GCC</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Gawk 和 GCC</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1936,34 +1910,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, Gawk,
-            GCC, Glibc, Grep, Make, Patch, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Gawk, GCC, Glibc,
+            Grep, Make, Patch, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Bash, GRUB, Inetutils, Less, Procps-ng,
-            Psmisc, Readline, Texinfo, Util-linux, and Vim</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Bash, GRUB, Inetutils, Less, Procps-ng, Psmisc,
+            Readline, Texinfo, Util-linux, 和 Vim</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -1973,32 +1947,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Binutils, Coreutils, Gcc, and Python</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Binutils, Coreutils, Gcc, 和 Python</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Meson</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Meson</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Asciidoc, Doxygen, Emacs, and re2c</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Asciidoc, Doxygen, Emacs, 和 re2c</span>
           </div>
         </div>
       </div>
@@ -2008,33 +1982,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Binutils, Coreutils, Gcc, Make, and
-            Perl</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Binutils, Coreutils, Gcc, Make, 和 Perl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Linux</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Linux</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2044,33 +2017,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc,
-            Grep, Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, Grep, Make, 和
+            Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Ed</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Ed</span>
           </div>
         </div>
       </div>
@@ -2080,33 +2053,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Gawk, GCC, GDBM,
-            Glibc, Grep, Groff, Make, Sed, and Zlib</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Gawk, GCC, GDBM, Glibc,
+            Grep, Groff, Make, Sed, 和 Zlib</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Iana-Etc and Procps-ng</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Iana-Etc 和 Procps-ng</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Autoconf</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Autoconf</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2116,33 +2089,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Gawk, GCC,
-            Glibc, Grep, Make, Popt, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Gawk, GCC, Glibc, Grep,
+            Make, Popt, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Kmod</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Kmod</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2152,33 +2125,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Gawk, GCC,
-            Glibc, Grep, and Make</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Gawk, GCC, Glibc, Grep, 和
+            Make</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils and Sed</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Pkg-config</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Pkg-config</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2188,33 +2161,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc,
-            Make, and Ncurses</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, Make, 和
+            Ncurses</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">DejaGNU</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">DejaGNU</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2224,33 +2197,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, Grep, Make, Ncurses, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, Grep,
+            Make, Ncurses, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2260,33 +2233,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gdbm,
-            Gettext, Glibc, Grep, Libffi, Make, Ncurses, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gdbm, Gettext, Glibc,
+            Grep, Libffi, Make, Ncurses, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">GDB and Valgrind</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">GDB 和 Valgrind</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Ninja</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Ninja</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Berkeley DB, OpenSSL, SQLite, and Tk</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Berkeley DB, OpenSSL, SQLite, 和 Tk</span>
           </div>
         </div>
       </div>
@@ -2296,33 +2269,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Gawk, GCC,
-            Glibc, Grep, Make, Ncurses, Patch, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Gawk, GCC, Glibc, Grep,
+            Make, Ncurses, Patch, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Bash and Gawk</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Bash 和 Gawk</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2332,33 +2305,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, Grep, Make, Sed, and Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, Grep,
+            Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Diffutils and Gawk</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Diffutils 和 Gawk</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">E2fsprogs, File, Libtool, and Shadow</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">E2fsprogs, File, Libtool, 和 Shadow</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2368,33 +2341,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils,
-            Findutils, Gawk, GCC, Gettext, Glibc, Grep, Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Findutils, Gawk,
+            GCC, Gettext, Glibc, Grep, Make, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Coreutils</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Coreutils</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Acl, Attr, Cracklib, and PAM</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Acl, Attr, Cracklib, 和 PAM</span>
           </div>
         </div>
       </div>
@@ -2404,72 +2377,69 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Binutils, Coreutils, GCC, Glibc, Make, and
-            Patch</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Binutils, Coreutils, GCC, Glibc, Make, 和 Patch</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <h2>
-        <a id="systemd-dep" name="systemd-dep"></a>Systemd
+        <a id="systemd-dep" name="systemd-dep"></a>systemd
       </h2>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Acl, Attr, Bash, Binutils, Coreutils,
-            Diffutils, Expat, Gawk, GCC, Glibc, Gperf, Grep, Intltool,
-            Libcap, Meson, Sed, and Util-linux</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Acl, Attr, Bash, Binutils, Coreutils, Diffutils, Expat,
+            Gawk, GCC, Glibc, Gperf, Grep, Intltool, Libcap, Make, Sed, 和
+            Util-linux</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Many, see <a class="ulink" href=
-            "http://www.linuxfromscratch.org/blfs/view/systemd/general/systemd.html">
-            BLFS systemd page</a></span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2479,33 +2449,32 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Binutils, Coreutils, GCC, Glibc, Make, and
-            Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Binutils, Coreutils, GCC, Glibc, Make, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">No test suite available</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">No test suite available</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2515,35 +2484,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Acl, Attr, Bash, Binutils, Bison,
-            Coreutils, GCC, Gettext, Glibc, Grep, Inetutils, Make, Sed, and
-            Texinfo</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Acl, Attr, Bash, Binutils, Bison, Coreutils, GCC,
+            Gettext, Glibc, Grep, Inetutils, Make, Sed, 和 Texinfo</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Autoconf, Diffutils, Findutils, Gawk, and
-            Gzip</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Autoconf, Diffutils, Findutils, Gawk, 和 Gzip</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2553,33 +2520,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, GCC,
-            Glibc, Grep, Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, GCC, Glibc, Grep,
+            Make, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2589,33 +2556,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Gettext,
-            Glibc, Grep, Make, Ncurses, Patch, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Gettext, Glibc, Grep,
+            Make, Ncurses, Patch, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2625,34 +2592,34 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils,
-            Eudev, Findutils, Gawk, GCC, Gettext, Glibc, Grep, Make, Ncurses,
-            Sed, and Zlib</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, Eudev, Findutils,
+            Gawk, GCC, Gettext, Glibc, Grep, Make, Ncurses, Sed, 和
+            Zlib</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody"><a class="ulink" href=
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody"><a class="ulink" href=
             "https://people.redhat.com/sgrubb/libcap-ng/">Libcap-ng</a></span>
           </div>
         </div>
@@ -2663,34 +2630,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Acl, Attr, Bash, Binutils, Coreutils,
-            Diffutils, GCC, Glibc, Grep, Make, Ncurses, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Acl, Attr, Bash, Binutils, Coreutils, Diffutils, GCC,
+            Glibc, Grep, Make, Ncurses, 和 Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">Xorg, GTK+2, LessTif, Python, Tcl, Ruby,
-            and GPM</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">Xorg, GTK+2, LessTif, Python, Tcl, Ruby, 和 GPM</span>
           </div>
         </div>
       </div>
@@ -2700,33 +2666,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Expat, GCC,
-            Glibc, Make, and Perl</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Expat, GCC, Glibc, Make, 和
+            Perl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">Perl</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">Perl</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Intltool</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Intltool</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2736,33 +2702,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, Diffutils, GCC,
-            Glibc, and Make</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, Diffutils, GCC, Glibc, 和
+            Make</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">Eudev, GRUB, Kmod, and Man-DB</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">Eudev, GRUB, Kmod, 和 Man-DB</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2772,33 +2738,33 @@
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Installation depends on:</strong>
-            <span class="segbody">Bash, Binutils, Coreutils, GCC, Glibc,
-            Make, and Sed</span>
+            <strong class="segtitle">安装必选依赖:</strong> <span class=
+            "segbody">Bash, Binutils, Coreutils, GCC, Glibc, Make, 和
+            Sed</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Test suite depends on:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">测试套件依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Must be installed before:</strong>
-            <span class="segbody">File, Kmod, Perl, and Util-linux</span>
+            <strong class="segtitle">必须预先安装:</strong> <span class=
+            "segbody">File, Kmod, Perl, 和 Util-linux</span>
           </div>
         </div>
       </div>
       <div class="segmentedlist">
         <div class="seglistitem">
           <div class="seg">
-            <strong class="segtitle">Optional dependencies:</strong>
-            <span class="segbody">None</span>
+            <strong class="segtitle">可供选择依赖:</strong> <span class=
+            "segbody">None</span>
           </div>
         </div>
       </div>
@@ -2806,17 +2772,16 @@
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="acknowledgments.html" title=
-          "Acknowledgments">Prev</a>
+          <a accesskey="p" href="acknowledgments.html" title="致谢">Prev</a>
           <p>
-            Acknowledgments
+            致谢
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="../scripts/scripts.html" title=
-          "Boot and sysconfig scripts version-20190524">Next</a>
+          "启动及系统配置脚本版本-20180820">Next</a>
           <p>
-            Boot and sysconfig scripts version-20190524
+            启动及系统配置脚本版本-20180820
           </p>
         </li>
         <li class="up">
@@ -2825,7 +2790,7 @@
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

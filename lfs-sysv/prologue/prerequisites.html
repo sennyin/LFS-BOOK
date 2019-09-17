@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      Prerequisites
+      前提条件
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,87 +12,73 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
-        Preface
+        序章
       </h3>
       <ul>
         <li class="prev">
           <a accesskey="p" href="package-choices.html" title=
-          "Rationale for Packages in the Book">Prev</a>
+          "本书中的软件包逻辑">Prev</a>
           <p>
-            Rationale for Packages in the Book
+            本书中的软件包逻辑
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="typography.html" title="Typography">Next</a>
+          <a accesskey="n" href="typography.html" title="排版约定">Next</a>
           <p>
-            Typography
+            排版约定
           </p>
         </li>
         <li class="up">
-          <a accesskey="u" href="preface.html" title="Preface">Up</a>
+          <a accesskey="u" href="preface.html" title="序章">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="en" xml:lang="en">
       <h1 class="sect1">
-        <a id="pre-prerequisites" name="pre-prerequisites"></a>vi.
-        Prerequisites
+        <a id="pre-prerequisites" name="pre-prerequisites"></a>vi. 前提条件
       </h1>
       <p>
-        Building an LFS system is not a simple task. It requires a certain
-        level of existing knowledge of Unix system administration in order to
-        resolve problems and correctly execute the commands listed. In
-        particular, as an absolute minimum, you should already have the
-        ability to use the command line (shell) to copy or move files and
-        directories, list directory and file contents, and change the current
-        directory. It is also expected that you have a reasonable knowledge
-        of using and installing Linux software.
+        构建一个 LFS 系统并不是一个简单的任务。它要求对 Unix
+        系统管理有一定水平的了解，以便可以解决问题并正确地执行所列出的命令。特别是，至少你应该拥有使用命令行（shell），复制或移动文件和目录、列出目录和文件内容、切换当前目录的能力。同时也希望你拥有使用和安装
+        Linux 软件的基本知识。
       </p>
       <p>
-        Because the LFS book assumes <span class="emphasis"><em>at
-        least</em></span> this basic level of skill, the various LFS support
-        forums are unlikely to be able to provide you with much assistance in
-        these areas. You will find that your questions regarding such basic
-        knowledge will likely go unanswered or you will simply be referred to
-        the LFS essential pre-reading list.
+        因为 LFS 书中假设你<span class="emphasis"><em>至少</em></span>有这些基本的技能，所以众多的
+        LFS 提供的论坛看起来在这方面也给你提供不了太多的帮助。你会发现对于这些基本知识的问题并不会得到解答，或者会简单的建议你去看一下 LFS
+        主要的提前阅读列表。
       </p>
       <p>
-        Before building an LFS system, we recommend reading the following:
+        构建 LFS 系统之前，我们建议阅读以下内容：
       </p>
       <div class="itemizedlist">
         <ul>
           <li class="listitem">
             <p>
-              Software-Building-HOWTO <a class="ulink" href=
+              构建软件 HOWTO <a class="ulink" href=
               "http://www.tldp.org/HOWTO/Software-Building-HOWTO.html">http://www.tldp.org/HOWTO/Software-Building-HOWTO.html</a>
             </p>
             <p>
-              This is a comprehensive guide to building and installing
-              <span class="quote">“<span class="quote">generic</span>”</span>
-              Unix software packages under Linux. Although it was written
-              some time ago, it still provides a good summary of the basic
-              techniques needed to build and install software.
+              这是一个在 Linux 上编译和安装「通用」Unix
+              软件包的综合指南。尽管成文已有一段时间，但其对于编译和安装软件中所需的基本技能，还算一个不错的总结。
             </p>
           </li>
           <li class="listitem">
             <p>
-              Beginner's Guide to Installing from Source <a class="ulink"
-              href=
+              初学者源码安装指南 <a class="ulink" href=
               "http://moi.vonos.net/linux/beginners-installing-from-source/">http://moi.vonos.net/linux/beginners-installing-from-source/</a>
             </p>
             <p>
-              This guide provides a good summary of basic skills and
-              techniques needed to build software from source code.
+              该指南很好的总结了从源码构建软件时所需要的基础技能和技巧。
             </p>
           </li>
         </ul>
@@ -102,23 +88,23 @@
       <ul>
         <li class="prev">
           <a accesskey="p" href="package-choices.html" title=
-          "Rationale for Packages in the Book">Prev</a>
+          "本书中的软件包逻辑">Prev</a>
           <p>
-            Rationale for Packages in the Book
+            本书中的软件包逻辑
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="typography.html" title="Typography">Next</a>
+          <a accesskey="n" href="typography.html" title="排版约定">Next</a>
           <p>
-            Typography
+            排版约定
           </p>
         </li>
         <li class="up">
-          <a accesskey="u" href="preface.html" title="Preface">Up</a>
+          <a accesskey="u" href="preface.html" title="序章">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

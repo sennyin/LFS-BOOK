@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
@@ -35,11 +35,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
@@ -50,95 +50,81 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Libtool package contains the GNU generic library support
-          script. It wraps the complexity of using shared libraries in a
-          consistent, portable interface.
+          Libtool 软件包包含 GNU 通用库支持脚本。它用一致的、可移植的接口封装复杂的共享库。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">1.9 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">1.5 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">43 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">43 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.35.1. Installation of Libtool
+          6.35.1. 安装 Libtool
         </h2>
         <p>
-          Prepare Libtool for compilation:
+          准备编译 Libtool：
         </p>
-        <pre class="userinput">
-<kbd class="command">./configure --prefix=/usr</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">./configure --prefix=/usr</kbd></pre>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make</kbd></pre>
         <p>
-          To test the results, issue:
+          用以下命令测试结果(大约 11.0 SBU)：
         </p>
-        <pre class="userinput">
-<kbd class="command">make check</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make check</kbd></pre>
         <div class="admon note">
           <img alt="[Note]" src="../images/note.png" />
           <h3>
             Note
           </h3>
           <p>
-            The test time for libtool can be reduced significantly on a
-            system with multiple cores. To do this, append <span class=
-            "command"><strong>TESTSUITEFLAGS=-j&lt;N&gt;</strong></span> to
-            the line above. For instance, using -j4 can reduce the test time
-            by over 60 percent.
+            在具有多个内核的系统上，libtool 的测试时间可以显著削减。为此，请在上面那行命令中添加 <span class=
+            "command"><strong>TESTSUITEFLAGS=-j&lt;N&gt;</strong></span>。例如，使用
+            -j4 或将减少 60% 的测试时间。
           </p>
         </div>
         <p>
-          Five tests are known to fail in the LFS build environment due to a
-          circular dependency, but all tests pass if rechecked after automake
-          is installed.
+          在 LFS 构建环境中已知有五个测试由于循环依赖会失败，但如果安装完 automake 之后重新检查，所有测试就都能通过。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make install</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
           <a id="contents-libtool" name="contents-libtool"></a>6.35.2.
-          Contents of Libtool
+          Libtool 软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">libtool and libtoolize</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">libtool 和 libtoolize</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed libraries:</strong>
-              <span class="segbody">libltdl.so</span>
+              <strong class="segtitle">安装的库:</strong> <span class=
+              "segbody">libltdl.so</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/include/libltdl and
-              /usr/share/libtool</span>
+              <strong class="segtitle">安装目录:</strong> <span class=
+              "segbody">/usr/include/libltdl 和 /usr/share/libtool</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -156,7 +142,7 @@
                 </td>
                 <td>
                   <p>
-                    Provides generalized library-building support services
+                    提供通用库编译支持服务
                   </p>
                 </td>
               </tr>
@@ -170,9 +156,8 @@
                 </td>
                 <td>
                   <p>
-                    Provides a standard way to add <span class=
-                    "command"><strong>libtool</strong></span> support to a
-                    package
+                    提供添加 <span class=
+                    "command"><strong>libtool</strong></span> 支持到软件包的一个标准方法
                   </p>
                 </td>
               </tr>
@@ -185,7 +170,7 @@
                 </td>
                 <td>
                   <p>
-                    Hides the various difficulties of dlopening libraries
+                    埋藏 dlopen 库的诸多难处
                   </p>
                 </td>
               </tr>
@@ -210,11 +195,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

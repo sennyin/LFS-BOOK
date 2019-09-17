@@ -12,35 +12,35 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="less.html" title="Less-551">Prev</a>
+          <a accesskey="p" href="less.html" title="Less-530">Prev</a>
           <p>
-            Less-551
+            Less-530
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="iproute2.html" title=
-          "IPRoute2-5.2.0">Next</a>
+          "IPRoute2-4.20.0">Next</a>
           <p>
-            IPRoute2-5.2.0
+            IPRoute2-4.20.0
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
@@ -50,79 +50,68 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Gzip package contains programs for compressing and
-          decompressing files.
+          Gzip 软件包包含用于压缩和解压文件的程序。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.1 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.1 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">20 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">20 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.62.1. Installation of Gzip
+          6.62.1. 安装 Gzip
         </h2>
         <p>
-          Prepare Gzip for compilation:
+          准备编译 Gzip：
         </p>
-        <pre class="userinput">
-<kbd class="command">./configure --prefix=/usr</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">./configure --prefix=/usr</kbd></pre>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make</kbd></pre>
         <p>
-          To test the results, issue:
+          用以下命令测试结果：
         </p>
-        <pre class="userinput">
-<kbd class="command">make check</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make check</kbd></pre>
         <p>
-          Two tests are known to fail in the LFS environment: help-version
-          and zmore.
+          已知有两个测试在 LFS 环境中会失败：help-version 和 zmore。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make install</kbd></pre>
         <p>
-          Move a program that needs to be on the root filesystem:
+          移动一些需要放在根文件系统的程序：
         </p>
-        <pre class="userinput">
-<kbd class="command">mv -v /usr/bin/gzip /bin</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">mv -v /usr/bin/gzip /bin</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
-          <a id="contents-gzip" name="contents-gzip"></a>6.62.2. Contents of
-          Gzip
+          <a id="contents-gzip" name="contents-gzip"></a>6.62.2. Gzip 软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">gunzip, gzexe, gzip, uncompress (hard
-              link with gunzip), zcat, zcmp, zdiff, zegrep, zfgrep, zforce,
-              zgrep, zless, zmore, and znew</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">gunzip, gzexe, gzip, uncompress (到 gunzip 的硬链接),
+              zcat, zcmp, zdiff, zegrep, zfgrep, zforce, zgrep, zless, zmore,
+              和 znew</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -140,7 +129,7 @@
                 </td>
                 <td>
                   <p>
-                    Decompresses gzipped files
+                    解压 gzip 压缩的文件
                   </p>
                 </td>
               </tr>
@@ -154,7 +143,7 @@
                 </td>
                 <td>
                   <p>
-                    Creates self-decompressing executable files
+                    创建自解压可执行文件
                   </p>
                 </td>
               </tr>
@@ -168,7 +157,7 @@
                 </td>
                 <td>
                   <p>
-                    Compresses the given files using Lempel-Ziv (LZ77) coding
+                    用 Lempel-Ziv(LZ77) 编码压缩指定文件
                   </p>
                 </td>
               </tr>
@@ -182,7 +171,7 @@
                 </td>
                 <td>
                   <p>
-                    Decompresses compressed files
+                    解压压缩文件
                   </p>
                 </td>
               </tr>
@@ -196,7 +185,7 @@
                 </td>
                 <td>
                   <p>
-                    Decompresses the given gzipped files to standard output
+                    解压指定 gzip 压缩的文件到标准输出
                   </p>
                 </td>
               </tr>
@@ -210,8 +199,8 @@
                 </td>
                 <td>
                   <p>
-                    Runs <span class="command"><strong>cmp</strong></span> on
-                    gzipped files
+                    对 gzip 压缩的文件运行 <span class=
+                    "command"><strong>cmp</strong></span> 命令
                   </p>
                 </td>
               </tr>
@@ -225,8 +214,8 @@
                 </td>
                 <td>
                   <p>
-                    Runs <span class="command"><strong>diff</strong></span>
-                    on gzipped files
+                    对 gzip 压缩的文件运行 <span class=
+                    "command"><strong>diff</strong></span> 命令
                   </p>
                 </td>
               </tr>
@@ -240,8 +229,8 @@
                 </td>
                 <td>
                   <p>
-                    Runs <span class="command"><strong>egrep</strong></span>
-                    on gzipped files
+                    对 gzip 压缩的文件运行 <span class=
+                    "command"><strong>egrep</strong></span> 命令
                   </p>
                 </td>
               </tr>
@@ -255,8 +244,8 @@
                 </td>
                 <td>
                   <p>
-                    Runs <span class="command"><strong>fgrep</strong></span>
-                    on gzipped files
+                    对 gzip 压缩的文件运行 <span class=
+                    "command"><strong>fgrep</strong></span> 命令
                   </p>
                 </td>
               </tr>
@@ -270,11 +259,10 @@
                 </td>
                 <td>
                   <p>
-                    Forces a <code class="filename">.gz</code> extension on
-                    all given files that are gzipped files, so that
-                    <span class="command"><strong>gzip</strong></span> will
-                    not compress them again; this can be useful when file
-                    names were truncated during a file transfer
+                    强制所有指定的 gzip 压缩文件的扩展名为 <code class=
+                    "filename">.gz</code>，这样 <span class=
+                    "command"><strong>gzip</strong></span>
+                    就不会对它们再次压缩；这在文件传输中文件名被截断时非常有用
                   </p>
                 </td>
               </tr>
@@ -288,8 +276,8 @@
                 </td>
                 <td>
                   <p>
-                    Runs <span class="command"><strong>grep</strong></span>
-                    on gzipped files
+                    对 gzip 压缩的文件运行 <span class=
+                    "command"><strong>grep</strong></span> 命令
                   </p>
                 </td>
               </tr>
@@ -303,8 +291,8 @@
                 </td>
                 <td>
                   <p>
-                    Runs <span class="command"><strong>less</strong></span>
-                    on gzipped files
+                    对 gzip 压缩的文件运行 <span class=
+                    "command"><strong>less</strong></span> 命令
                   </p>
                 </td>
               </tr>
@@ -318,8 +306,8 @@
                 </td>
                 <td>
                   <p>
-                    Runs <span class="command"><strong>more</strong></span>
-                    on gzipped files
+                    对 gzip 压缩的文件运行 <span class=
+                    "command"><strong>more</strong></span> 命令
                   </p>
                 </td>
               </tr>
@@ -333,11 +321,10 @@
                 </td>
                 <td>
                   <p>
-                    Re-compresses files from <span class=
-                    "command"><strong>compress</strong></span> format to
-                    <span class="command"><strong>gzip</strong></span>
-                    format—<code class="filename">.Z</code> to <code class=
-                    "filename">.gz</code>
+                    从 <span class="command"><strong>compress</strong></span>
+                    格式到 <span class="command"><strong>gzip</strong></span>
+                    格式重新压缩文件format——<code class="filename">.Z</code> 到
+                    <code class="filename">.gz</code>
                   </p>
                 </td>
               </tr>
@@ -349,25 +336,25 @@
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="less.html" title="Less-551">Prev</a>
+          <a accesskey="p" href="less.html" title="Less-530">Prev</a>
           <p>
-            Less-551
+            Less-530
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="iproute2.html" title=
-          "IPRoute2-5.2.0">Next</a>
+          "IPRoute2-4.20.0">Next</a>
           <p>
-            IPRoute2-5.2.0
+            IPRoute2-4.20.0
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

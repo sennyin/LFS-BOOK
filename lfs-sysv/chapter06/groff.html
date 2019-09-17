@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
@@ -29,18 +29,18 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="grub.html" title="GRUB-2.04">Next</a>
+          <a accesskey="n" href="grub.html" title="GRUB-2.02">Next</a>
           <p>
-            GRUB-2.04
+            GRUB-2.02
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
@@ -50,89 +50,77 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Groff package contains programs for processing and formatting
-          text.
+          Groff 软件包包含用于处理和格式化文本的程序。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.5 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.4 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">95 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">94 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.59.1. Installation of Groff
+          6.59.1. 安装 Groff
         </h2>
         <p>
-          Groff expects the environment variable <code class=
-          "envar">PAGE</code> to contain the default paper size. For users in
-          the United States, <em class=
-          "parameter"><code>PAGE=letter</code></em> is appropriate.
-          Elsewhere, <em class="parameter"><code>PAGE=A4</code></em> may be
-          more suitable. While the default paper size is configured during
-          compilation, it can be overridden later by echoing either
-          <span class="quote">“<span class="quote">A4</span>”</span> or
-          <span class="quote">“<span class="quote">letter</span>”</span> to
-          the <code class="filename">/etc/papersize</code> file.
+          Groff 希望环境变量 <code class="envar">PAGE</code> 包含默认的页面大小，对于美国的用户，为
+          <em class=
+          "parameter"><code>PAGE=letter</code></em>，对于其它地方，<em class=
+          "parameter"><code>PAGE=A4</code></em> 更合适。尽管在编译的时候配置了默认页面大小，后面通过
+          echo「A4」或「letter」到 <code class="filename">/etc/papersize</code>
+          文件仍然可以修改。
         </p>
         <p>
-          Prepare Groff for compilation:
+          准备编译 Groff：
         </p>
-        <pre class="userinput">
-<kbd class="command">PAGE=<em class=
-"replaceable"><code>&lt;paper_size&gt;</code></em> ./configure --prefix=/usr</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">PAGE=<em class=
+        "replaceable"><code>&lt;paper_size&gt;</code></em> ./configure --prefix=/usr</kbd></pre>
         <p>
-          This package does not support parallel build. Compile the package:
+          该软件不支持并行构建。编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make -j1</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make -j1</kbd></pre>
         <p>
-          This package does not come with a test suite.
+          该软件包没有测试套具。
         </p>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make install</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
-          <a id="contents-groff" name="contents-groff"></a>6.59.2. Contents
-          of Groff
+          <a id="contents-groff" name="contents-groff"></a>6.59.2. Groff
+          软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">addftinfo, afmtodit, chem, eqn,
-              eqn2graph, gdiffmk, glilypond, gperl, gpinyin, grap2graph, grn,
-              grodvi, groff, groffer, grog, grolbp, grolj4, gropdf, grops,
-              grotty, hpftodit, indxbib, lkbib, lookbib, mmroff, neqn, nroff,
-              pdfmom, pdfroff, pfbtops, pic, pic2graph, post-grohtml,
-              preconv, pre-grohtml, refer, roff2dvi, roff2html, roff2pdf,
-              roff2ps, roff2text, roff2x, soelim, tbl, tfmtodit, and
-              troff</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">addftinfo, afmtodit, chem, eqn, eqn2graph, gdiffmk,
+              glilypond, gperl, gpinyin, grap2graph, grn, grodvi, groff,
+              groffer, grog, grolbp, grolj4, gropdf, grops, grotty, hpftodit,
+              indxbib, lkbib, lookbib, mmroff, neqn, nroff, pdfmom, pdfroff,
+              pfbtops, pic, pic2graph, post-grohtml, preconv, pre-grohtml,
+              refer, roff2dvi, roff2html, roff2pdf, roff2ps, roff2text,
+              roff2x, soelim, tbl, tfmtodit, 和 troff</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Installed directories:</strong>
-              <span class="segbody">/usr/lib/groff and
-              /usr/share/doc/groff-1.22.4, /usr/share/groff</span>
+              <strong class="segtitle">安装的目录:</strong> <span class=
+              "segbody">/usr/lib/groff 和 /usr/share/doc/groff-1.22.4,
+              /usr/share/groff</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -150,9 +138,8 @@
                 </td>
                 <td>
                   <p>
-                    Reads a troff font file and adds some additional
-                    font-metric information that is used by the <span class=
-                    "command"><strong>groff</strong></span> system
+                    读 troff 字体文件并添加一些额外的 <span class=
+                    "command"><strong>groff</strong></span> 系统使用的字体信息
                   </p>
                 </td>
               </tr>
@@ -166,9 +153,9 @@
                 </td>
                 <td>
                   <p>
-                    Creates a font file for use with <span class=
-                    "command"><strong>groff</strong></span> and <span class=
-                    "command"><strong>grops</strong></span>
+                    创建用于和 <span class="command"><strong>groff</strong></span>
+                    以及 <span class="command"><strong>grops</strong></span>
+                    一起使用的字体文件
                   </p>
                 </td>
               </tr>
@@ -182,8 +169,7 @@
                 </td>
                 <td>
                   <p>
-                    Groff preprocessor for producing chemical structure
-                    diagrams
+                    Gorff 预处理生成化学结构图
                   </p>
                 </td>
               </tr>
@@ -196,9 +182,8 @@
                 </td>
                 <td>
                   <p>
-                    Compiles descriptions of equations embedded within troff
-                    input files into commands that are understood by
-                    <span class="command"><strong>troff</strong></span>
+                    编译嵌入了 troff 输入文件的方程的描述为 <span class=
+                    "command"><strong>troff</strong></span> 能理解的命令
                   </p>
                 </td>
               </tr>
@@ -212,7 +197,7 @@
                 </td>
                 <td>
                   <p>
-                    Converts a troff EQN (equation) into a cropped image
+                    转换 troff EQN （equation 方程）为裁剪图像
                   </p>
                 </td>
               </tr>
@@ -226,7 +211,7 @@
                 </td>
                 <td>
                   <p>
-                    Marks differences between groff/nroff/troff files
+                    标记 groff/nroff/troff 文件的差异
                   </p>
                 </td>
               </tr>
@@ -240,8 +225,7 @@
                 </td>
                 <td>
                   <p>
-                    Transforms sheet music written in the lilypond language
-                    into the groff language
+                    将 lilypond 语言写成的乐谱转换至 groff语言
                   </p>
                 </td>
               </tr>
@@ -255,8 +239,7 @@
                 </td>
                 <td>
                   <p>
-                    Preprocesor for groff, allowing addition of perl code
-                    into groff files
+                    Groff 的预处理器，允许在 groff 中添加 perl 代码
                   </p>
                 </td>
               </tr>
@@ -270,8 +253,7 @@
                 </td>
                 <td>
                   <p>
-                    Preprocesor for groff, allowing addition of Chinese
-                    European-like language Pinyin into groff files.
+                    Groff 的预处理器，允许在 groff 文件中添加类似欧洲语言的中文拼音。
                   </p>
                 </td>
               </tr>
@@ -285,7 +267,7 @@
                 </td>
                 <td>
                   <p>
-                    Converts a grap diagram into a cropped bitmap image
+                    转换 grap 图为裁剪位图图像
                   </p>
                 </td>
               </tr>
@@ -298,8 +280,8 @@
                 </td>
                 <td>
                   <p>
-                    A <span class="command"><strong>groff</strong></span>
-                    preprocessor for gremlin files
+                    用于 gremlin 文件的 <span class=
+                    "command"><strong>groff</strong></span> 预处理器
                   </p>
                 </td>
               </tr>
@@ -313,9 +295,8 @@
                 </td>
                 <td>
                   <p>
-                    A driver for <span class=
-                    "command"><strong>groff</strong></span> that produces TeX
-                    dvi format
+                    生成 TeX dvi 格式的 <span class=
+                    "command"><strong>groff</strong></span> 驱动
                   </p>
                 </td>
               </tr>
@@ -329,10 +310,8 @@
                 </td>
                 <td>
                   <p>
-                    A front-end to the groff document formatting system;
-                    normally, it runs the <span class=
-                    "command"><strong>troff</strong></span> program and a
-                    post-processor appropriate for the selected device
+                    groff 文档格式化系统前端；一般运行 <span class=
+                    "command"><strong>troff</strong></span> 程序和适合选定文件的后处理器
                   </p>
                 </td>
               </tr>
@@ -346,7 +325,7 @@
                 </td>
                 <td>
                   <p>
-                    Displays groff files and man pages on X and tty terminals
+                    在 X 和 tty 终端显示 groff 文件以及 man 页面
                   </p>
                 </td>
               </tr>
@@ -360,17 +339,16 @@
                 </td>
                 <td>
                   <p>
-                    Reads files and guesses which of the <span class=
-                    "command"><strong>groff</strong></span> options
-                    <code class="option">-e</code>, <code class=
-                    "option">-man</code>, <code class="option">-me</code>,
-                    <code class="option">-mm</code>, <code class=
-                    "option">-ms</code>, <code class="option">-p</code>,
-                    <code class="option">-s</code>, and <code class=
-                    "option">-t</code> are required for printing files, and
-                    reports the <span class=
-                    "command"><strong>groff</strong></span> command including
-                    those options
+                    读文件并猜测打印文件需要的 <span class=
+                    "command"><strong>groff</strong></span> 选项 <code class=
+                    "option">-e</code>，<code class=
+                    "option">-man</code>，<code class=
+                    "option">-me</code>，<code class=
+                    "option">-mm</code>，<code class=
+                    "option">-ms</code>，<code class=
+                    "option">-p</code>，<code class="option">-s</code>,以及
+                    <code class="option">-t</code>，并报告包含这些选项的 <span class=
+                    "command"><strong>groff</strong></span> 命令
                   </p>
                 </td>
               </tr>
@@ -384,9 +362,8 @@
                 </td>
                 <td>
                   <p>
-                    Is a <span class="command"><strong>groff</strong></span>
-                    driver for Canon CAPSL printers (LBP-4 and LBP-8 series
-                    laser printers)
+                    用于 Canon CAPSL 打印机（LBP-4 和 LBP-8 系列激光打印机） 的 <span class=
+                    "command"><strong>groff</strong></span> 驱动
                   </p>
                 </td>
               </tr>
@@ -400,10 +377,8 @@
                 </td>
                 <td>
                   <p>
-                    Is a driver for <span class=
-                    "command"><strong>groff</strong></span> that produces
-                    output in PCL5 format suitable for an HP LaserJet 4
-                    printer
+                    生成适合于 HP LaserJet 4 打印机的 PCL5 格式输出的 <span class=
+                    "command"><strong>groff</strong></span> 驱动
                   </p>
                 </td>
               </tr>
@@ -417,8 +392,8 @@
                 </td>
                 <td>
                   <p>
-                    Translates the output of GNU <span class=
-                    "command"><strong>troff</strong></span> to PDF
+                    翻译 GNU <span class=
+                    "command"><strong>troff</strong></span> 的输出至 PDF
                   </p>
                 </td>
               </tr>
@@ -432,8 +407,8 @@
                 </td>
                 <td>
                   <p>
-                    Translates the output of GNU <span class=
-                    "command"><strong>troff</strong></span> to PostScript
+                    转换 GNU <span class=
+                    "command"><strong>troff</strong></span> 输出为 PostScript
                   </p>
                 </td>
               </tr>
@@ -447,9 +422,8 @@
                 </td>
                 <td>
                   <p>
-                    Translates the output of GNU <span class=
-                    "command"><strong>troff</strong></span> into a form
-                    suitable for typewriter-like devices
+                    转换 GNU <span class=
+                    "command"><strong>troff</strong></span> 输出为适合于打字机设备的格式
                   </p>
                 </td>
               </tr>
@@ -463,9 +437,8 @@
                 </td>
                 <td>
                   <p>
-                    Creates a font file for use with <span class=
-                    "command"><strong>groff -Tlj4</strong></span> from an
-                    HP-tagged font metric file
+                    从 HP标签字体规格文件创建和 <span class="command"><strong>groff
+                    -Tlj4</strong></span> 一起使用的字体文件
                   </p>
                 </td>
               </tr>
@@ -479,11 +452,11 @@
                 </td>
                 <td>
                   <p>
-                    Creates an inverted index for the bibliographic databases
-                    with a specified file for use with <span class=
-                    "command"><strong>refer</strong></span>, <span class=
-                    "command"><strong>lookbib</strong></span>, and
+                    用和 <span class=
+                    "command"><strong>refer</strong></span>，<span class=
+                    "command"><strong>lookbib</strong></span>, 以及
                     <span class="command"><strong>lkbib</strong></span>
+                    一起使用的指定文件为文献数据库创建倒排索引
                   </p>
                 </td>
               </tr>
@@ -497,8 +470,7 @@
                 </td>
                 <td>
                   <p>
-                    Searches bibliographic databases for references that
-                    contain specified keys and reports any references found
+                    搜索文献数据库中包含指定键的引用并报告找到的任何引用
                   </p>
                 </td>
               </tr>
@@ -512,13 +484,7 @@
                 </td>
                 <td>
                   <p>
-                    Prints a prompt on the standard error (unless the
-                    standard input is not a terminal), reads a line
-                    containing a set of keywords from the standard input,
-                    searches the bibliographic databases in a specified file
-                    for references containing those keywords, prints any
-                    references found on the standard output, and repeats this
-                    process until the end of input
+                    在标准错误中输出提示（除非标准输入不是终端），从标准输入读取包含一系列关键字的行，在指定的文件中搜索文献数据库中包含那些关键字的引用，在标准输出中打印找到的任何引用，循环这些过程直到输入结束
                   </p>
                 </td>
               </tr>
@@ -532,8 +498,8 @@
                 </td>
                 <td>
                   <p>
-                    A simple preprocessor for <span class=
-                    "command"><strong>groff</strong></span>
+                    <span class="command"><strong>groff</strong></span>
+                    的简单预处理器
                   </p>
                 </td>
               </tr>
@@ -547,8 +513,7 @@
                 </td>
                 <td>
                   <p>
-                    Formats equations for American Standard Code for
-                    Information Interchange (ASCII) output
+                    为美国标准信息交换码（ASCII） 输出格式化方程
                   </p>
                 </td>
               </tr>
@@ -562,9 +527,8 @@
                 </td>
                 <td>
                   <p>
-                    A script that emulates the <span class=
-                    "command"><strong>nroff</strong></span> command using
-                    <span class="command"><strong>groff</strong></span>
+                    用 <span class="command"><strong>nroff</strong></span> 模仿
+                    <span class="command"><strong>groff</strong></span> 命令的脚本
                   </p>
                 </td>
               </tr>
@@ -578,9 +542,7 @@
                 </td>
                 <td>
                   <p>
-                    Is a wrapper around groff that facilitates the production
-                    of PDF documents from files formatted with the mom
-                    macros.
+                    groff 周围的封装，用于简化从带有 mom 宏的文件格式生成 PDF 文件的过程。
                   </p>
                 </td>
               </tr>
@@ -594,7 +556,7 @@
                 </td>
                 <td>
                   <p>
-                    Creates pdf documents using groff
+                    用 groff 创建 pdf 文档
                   </p>
                 </td>
               </tr>
@@ -608,8 +570,8 @@
                 </td>
                 <td>
                   <p>
-                    Translates a PostScript font in <code class=
-                    "filename">.pfb</code> format to ASCII
+                    转换 <code class="filename">.pfb</code> 格式中的 PostScript 字体为
+                    ASCII
                   </p>
                 </td>
               </tr>
@@ -622,9 +584,8 @@
                 </td>
                 <td>
                   <p>
-                    Compiles descriptions of pictures embedded within troff
-                    or TeX input files into commands understood by TeX or
-                    <span class="command"><strong>troff</strong></span>
+                    编译嵌入了 troff 或 TeX 输入文件的图像的描述为 TeX 或 <span class=
+                    "command"><strong>troff</strong></span> 能理解的命令
                   </p>
                 </td>
               </tr>
@@ -638,7 +599,7 @@
                 </td>
                 <td>
                   <p>
-                    Converts a PIC diagram into a cropped image
+                    转换 PIC 图为裁剪图像
                   </p>
                 </td>
               </tr>
@@ -652,8 +613,8 @@
                 </td>
                 <td>
                   <p>
-                    Translates the output of GNU <span class=
-                    "command"><strong>troff</strong></span> to HTML
+                    转换 GNU <span class=
+                    "command"><strong>troff</strong></span> 输出为 HTML
                   </p>
                 </td>
               </tr>
@@ -667,9 +628,8 @@
                 </td>
                 <td>
                   <p>
-                    Converts encoding of input files to something GNU
-                    <span class="command"><strong>troff</strong></span>
-                    understands
+                    转换输入文件编码为 GNU <span class=
+                    "command"><strong>troff</strong></span> 能理解的编码
                   </p>
                 </td>
               </tr>
@@ -683,8 +643,8 @@
                 </td>
                 <td>
                   <p>
-                    Translates the output of GNU <span class=
-                    "command"><strong>troff</strong></span> to HTML
+                    转换 GNU <span class=
+                    "command"><strong>troff</strong></span> 的输出为 HTML
                   </p>
                 </td>
               </tr>
@@ -698,14 +658,11 @@
                 </td>
                 <td>
                   <p>
-                    Copies the contents of a file to the standard output,
-                    except that lines between <span class=
-                    "emphasis"><em>.[</em></span> and <span class=
-                    "emphasis"><em>.]</em></span> are interpreted as
-                    citations, and lines between <span class=
-                    "emphasis"><em>.R1</em></span> and <span class=
-                    "emphasis"><em>.R2</em></span> are interpreted as
-                    commands for how citations are to be processed
+                    复制文件内容到标准输出，其中 <span class="emphasis"><em>.[</em></span>
+                    和 <span class="emphasis"><em>.]</em></span>
+                    之间的行解释为引用，<span class="emphasis"><em>.R1</em></span> 和
+                    <span class="emphasis"><em>.R2</em></span>
+                    之间的行解释为如何处理引用的命令
                   </p>
                 </td>
               </tr>
@@ -719,7 +676,7 @@
                 </td>
                 <td>
                   <p>
-                    Transforms roff files into DVI format
+                    转化 roff 文件到 DVI 格式
                   </p>
                 </td>
               </tr>
@@ -733,7 +690,7 @@
                 </td>
                 <td>
                   <p>
-                    Transforms roff files into HTML format
+                    转换 roff 文件到 HTML 格式
                   </p>
                 </td>
               </tr>
@@ -747,7 +704,7 @@
                 </td>
                 <td>
                   <p>
-                    Transforms roff files into PDFs
+                    转换 roff 文件到 PDFs
                   </p>
                 </td>
               </tr>
@@ -761,7 +718,7 @@
                 </td>
                 <td>
                   <p>
-                    Transforms roff files into ps files
+                    转换 roff 文件为 ps 文件
                   </p>
                 </td>
               </tr>
@@ -775,7 +732,7 @@
                 </td>
                 <td>
                   <p>
-                    Transforms roff files into text files
+                    转换 roff 文件为文本文件
                   </p>
                 </td>
               </tr>
@@ -789,7 +746,7 @@
                 </td>
                 <td>
                   <p>
-                    Transforms roff files into other formats
+                    转换 roff 文件到其它格式
                   </p>
                 </td>
               </tr>
@@ -803,9 +760,8 @@
                 </td>
                 <td>
                   <p>
-                    Reads files and replaces lines of the form <span class=
-                    "emphasis"><em>.so file</em></span> by the contents of
-                    the mentioned <span class="emphasis"><em>file</em></span>
+                    读文件并用相应的 <span class="emphasis"><em>file</em></span> 内容替换
+                    <span class="emphasis"><em>.so file</em></span> 格式的行
                   </p>
                 </td>
               </tr>
@@ -818,9 +774,8 @@
                 </td>
                 <td>
                   <p>
-                    Compiles descriptions of tables embedded within troff
-                    input files into commands that are understood by
-                    <span class="command"><strong>troff</strong></span>
+                    编译嵌入了 troff 输入文件的表的描述为 <span class=
+                    "command"><strong>troff</strong></span> 能理解的命令
                   </p>
                 </td>
               </tr>
@@ -834,8 +789,8 @@
                 </td>
                 <td>
                   <p>
-                    Creates a font file for use with <span class=
-                    "command"><strong>groff -Tdvi</strong></span>
+                    创建和 <span class="command"><strong>groff
+                    -Tdvi</strong></span> 一起使用的字体文件
                   </p>
                 </td>
               </tr>
@@ -849,12 +804,10 @@
                 </td>
                 <td>
                   <p>
-                    Is highly compatible with Unix <span class=
-                    "command"><strong>troff</strong></span>; it should
-                    usually be invoked using the <span class=
-                    "command"><strong>groff</strong></span> command, which
-                    will also run preprocessors and post-processors in the
-                    appropriate order and with the appropriate options
+                    和 Unix <span class=
+                    "command"><strong>troff</strong></span> 高度兼容；通常应该使用
+                    <span class="command"><strong>groff</strong></span>
+                    命令调用，它也会以恰当的顺序和选项运行预处理器和后处理器
                   </p>
                 </td>
               </tr>
@@ -873,18 +826,18 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="grub.html" title="GRUB-2.04">Next</a>
+          <a accesskey="n" href="grub.html" title="GRUB-2.02">Next</a>
           <p>
-            GRUB-2.04
+            GRUB-2.02
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

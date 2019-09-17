@@ -12,34 +12,34 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
-          <a accesskey="p" href="Python.html" title="Python-3.7.4">Prev</a>
+          <a accesskey="p" href="Python.html" title="Python-3.7.2">Prev</a>
           <p>
-            Python-3.7.4
+            Python-3.7.2
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="meson.html" title="Meson-0.51.1">Next</a>
+          <a accesskey="n" href="meson.html" title="Meson-0.49.2">Next</a>
           <p>
-            Meson-0.51.1
+            Meson-0.49.2
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
@@ -49,66 +49,56 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          Ninja is a small build system with a focus on speed.
+          Ninja 是一个专注于速度的小型构件系统。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.2 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.2 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">69 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">65 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.52.1. Installation of Ninja
+          6.52.1. 安装 Ninja
         </h2>
         <p>
-          When run, ninja normally runs a maximum number of processes in
-          parallel. By default this is the number of cores on the system plus
-          two. In some cases this can overheat a CPU or run a system out of
-          memory. If run from the command line, passing a -jN parameter will
-          limit the number of parallel processes, but some packages embed the
-          execution of ninja and do not pass a -j parameter.
+          在运行时，ninja 通常会并行最大数量的进程。默认值是系统的核心数乘以二。有些时候会导致 CPU
+          过热，或者内存容量不足。如果是命令行运行，通过传递 -jN 参数可以限制并行的进程数，但是有些软件包虽然潜入了 ninja
+          的执行却不会传递 -j 参数。
         </p>
         <p>
-          Using the <span class="emphasis"><em>optional</em></span> procedure
-          below allows a user to limit the number of parallel processes via
-          an environment variable, NINJAJOBS. <span class=
-          "command"><strong>For example</strong></span>, setting:
+          通过使用下方 <span class="emphasis"><em>可选</em></span> 过程，让用户能够通过环境变量
+          NINJAJOBS 来限制并行进程的数量。<span class=
+          "command"><strong>例如</strong></span>， 设定：
         </p>
-        <pre class="screen">
-export NINJAJOBS=4
-</pre>
+        <pre class="screen">export NINJAJOBS=4</pre>
         <p>
-          will limit ninja to four parallel processes.
+          将限制 ninja 最多仅四个进程并行。
         </p>
         <p>
-          If desired, add the capability to use the environment variable
-          NINJAJOBS by running:
+          如果需要，运行以下命令以添加使用环境变量 NINJAJOBS 的功能：
         </p>
-        <pre class="userinput">
-<kbd class="command">sed -i '/int Guess/a \
+        <pre class="userinput"><kbd class="command">sed -i '/int Guess/a \
   int   j = 0;\
   char* jobs = getenv( "NINJAJOBS" );\
   if ( jobs != NULL ) j = atoi( jobs );\
   if ( j &gt; 0 ) return j;\
-' src/ninja.cc</kbd>
-</pre>
+' src/ninja.cc</kbd></pre>
         <p>
-          Build Ninja with:
+          构建 Ninja：
         </p>
-        <pre class="userinput">
-<kbd class="command">python3 configure.py --bootstrap</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">python3 configure.py --bootstrap</kbd></pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the build option:</strong>
+            <strong>构建参数的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -117,44 +107,41 @@ export NINJAJOBS=4
             </dt>
             <dd>
               <p>
-                This parameter forces ninja to rebuild itself for the current
-                system.
+                这个参数强迫 ninja 重新构建自身以适应当前系统。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          To test the results, issue:
+          查看测试结果，输入：
         </p>
-        <pre class="userinput">
-<kbd class="command">./ninja ninja_test
-./ninja_test --gtest_filter=-SubprocessTest.SetWithLots</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">python3 configure.py
+./ninja ninja_test
+./ninja_test --gtest_filter=-SubprocessTest.SetWithLots</kbd></pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">install -vm755 ninja /usr/bin/
+        <pre class="userinput"><kbd class=
+        "command">install -vm755 ninja /usr/bin/
 install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
-install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja</kbd>
-</pre>
+install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
-          <a id="contents-ninja" name="contents-ninja"></a>6.52.2. Contents
-          of Ninja
+          <a id="contents-ninja" name="contents-ninja"></a>6.52.2. Ninja
+          软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed programs:</strong>
-              <span class="segbody">ninja</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">ninja</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -172,7 +159,7 @@ install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja</kbd>
                 </td>
                 <td>
                   <p>
-                    is the Ninja build system.
+                    Ninja 构件系统。
                   </p>
                 </td>
               </tr>
@@ -184,24 +171,24 @@ install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja</kbd>
     <div class="navfooter">
       <ul>
         <li class="prev">
-          <a accesskey="p" href="Python.html" title="Python-3.7.4">Prev</a>
+          <a accesskey="p" href="Python.html" title="Python-3.7.2">Prev</a>
           <p>
-            Python-3.7.4
+            Python-3.7.2
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="meson.html" title="Meson-0.51.1">Next</a>
+          <a accesskey="n" href="meson.html" title="Meson-0.49.2">Next</a>
           <p>
-            Meson-0.51.1
+            Meson-0.49.2
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

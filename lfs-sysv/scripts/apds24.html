@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0">
+  <body class="lfs" id="lfs-8.4">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0
+        Linux From Scratch （简体中文版） - Version 8.4
       </h4>
       <h3>
-        Appendix&nbsp;D.&nbsp;Boot and sysconfig scripts version-20190524
+        Appendix&nbsp;D.&nbsp;启动及系统配置脚本版本-20180820
       </h3>
       <ul>
         <li class="prev">
@@ -36,12 +36,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="scripts.html" title=
-          "Appendix&nbsp;D.&nbsp;Boot and sysconfig scripts version-20190524">
-          Up</a>
+          "Appendix&nbsp;D.&nbsp;启动及系统配置脚本版本-20180820">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>
@@ -49,8 +48,7 @@
       <h1 class="sect1">
         <a id="ifup" name="ifup"></a>D.24. /sbin/ifup
       </h1>
-      <pre class="screen">
-#!/bin/sh
+      <pre class="screen">#!/bin/sh
 ########################################################################
 # Begin /sbin/ifup
 #
@@ -59,7 +57,6 @@
 # Authors     : Nathan Coulson - nathan@linuxfromscratch.org
 #               Kevin P. Fleming - kpfleming@linuxfromscratch.org
 # Update      : Bruce Dubbs - bdubbs@linuxfromscratch.org
-#               DJ Lucas - dj@linuxfromscratch.org
 #
 # Version     : LFS 7.7
 #
@@ -71,8 +68,6 @@
 
 up()
 {
-  log_info_msg "Bringing up the ${1} interface..."
-
   if ip link show $1 &gt; /dev/null 2&gt;&amp;1; then
      link_status=`ip link show $1`
 
@@ -83,11 +78,9 @@ up()
      fi
 
   else
-     log_failure_msg "Interface ${IFACE} doesn't exist."
+     log_failure_msg "\nInterface ${IFACE} doesn't exist."
      exit 1
   fi
-
-  evaluate_retval
 }
 
 RELEASE="7.7"
@@ -129,27 +122,25 @@ file=/etc/sysconfig/ifconfig.${1}
 
 . /lib/lsb/init-functions
 
+log_info_msg "Bringing up the ${1} interface... "
+
 if [ ! -r "${file}" ]; then
-   log_failure_msg "Unable to bring up ${1} interface! ${file} is missing or cannot be accessed."
+   log_failure_msg2 "${file} is missing or cannot be accessed." 
    exit 1
 fi
 
-.  $file
+. $file
 
 if [ "$IFACE" = "" ]; then
-   log_failure_msg "Unable to bring up ${1} interface! ${file} does not define an interface [IFACE]."
+   log_failure_msg2 "${file} does not define an interface [IFACE]."
    exit 1
 fi
 
 # Do not process this service if started by boot, and ONBOOT
 # is not set to yes
 if [ "${IN_BOOT}" = "1" -a "${ONBOOT}" != "yes" ]; then
+   log_skip_msg
    exit 0
-fi
-
-# Bring up the interface
-if [ "$VIRTINT" != "yes" ]; then
-   up ${IFACE}
 fi
 
 for S in ${SERVICE}; do
@@ -169,13 +160,8 @@ for S in ${SERVICE}; do
   IFCONFIG=${file} /lib/services/${S} ${IFACE} up
 done
 
-# Set link up virtual interfaces
-if [ "${VIRTINT}" == "yes" ]; then
-   up ${IFACE}
-fi
-
-# Bring up any additional interface components
-for I in $INTERFACE_COMPONENTS; do up $I; done
+# Bring up the interface and any components
+for I in $IFACE $INTERFACE_COMPONENTS; do up $I; done
 
 # Set MTU if requested. Check if MTU has a "good" value.
 if test -n "${MTU}"; then
@@ -191,9 +177,9 @@ fi
 # Set the route default gateway if requested
 if [ -n "${GATEWAY}" ]; then
    if ip route | grep -q default; then
-      log_warning_msg "Gateway already setup; skipping."
+      log_skip_msg "\n     Gateway already setup; skipping."
    else
-      log_info_msg "Adding default gateway ${GATEWAY} to the ${IFACE} interface..."
+      log_info_msg "Setting up default gateway..."
       ip route add default via ${GATEWAY} dev ${IFACE}
       evaluate_retval
    fi
@@ -219,12 +205,11 @@ fi
         </li>
         <li class="up">
           <a accesskey="u" href="scripts.html" title=
-          "Appendix&nbsp;D.&nbsp;Boot and sysconfig scripts version-20190524">
-          Up</a>
+          "Appendix&nbsp;D.&nbsp;启动及系统配置脚本版本-20180820">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0 ">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4 ">Home</a>
         </li>
       </ul>
     </div>

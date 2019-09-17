@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;5.&nbsp;Constructing a Temporary System
+        Chapter&nbsp;5.&nbsp;构建临时系统
       </h3>
       <ul>
         <li class="prev">
@@ -28,18 +28,18 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="bison.html" title="Bison-3.4.1">Next</a>
+          <a accesskey="n" href="bison.html" title="Bison-3.3.2">Next</a>
           <p>
-            Bison-3.4.1
+            Bison-3.3.2
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter05.html" title=
-          "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">Up</a>
+          "Chapter&nbsp;5.&nbsp;构建临时系统">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
@@ -49,34 +49,33 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Bash package contains the Bourne-Again SHell.
+          Bash 软件包包含 Bourne-Again Shell。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.4 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.4 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">67 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">67 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          5.16.1. Installation of Bash
+          5.16.1. 安装 Bash
         </h2>
         <p>
-          Prepare Bash for compilation:
+          配置 Bash 准备编译：
         </p>
-        <pre class="userinput">
-<kbd class="command">./configure --prefix=/tools --without-bash-malloc</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">./configure --prefix=/tools --without-bash-malloc</kbd></pre>
         <div class="variablelist">
           <p class="title">
-            <strong>The meaning of the configure options:</strong>
+            <strong>配置脚本参数的含义：</strong>
           </p>
           <dl class="variablelist">
             <dt>
@@ -85,50 +84,36 @@
             </dt>
             <dd>
               <p>
-                This option turns off the use of Bash's memory allocation
-                (<code class="function">malloc</code>) function which is
-                known to cause segmentation faults. By turning this option
-                off, Bash will use the <code class="function">malloc</code>
-                functions from Glibc which are more stable.
+                这个选项会禁用 Bash 的内存分配功能（<code class=
+                "function">malloc</code>），这个功能已知会导致段错误。而禁用这个功能后，Bash 将使用
+                Glibc 的 <code class="function">malloc</code> 函数，这样会更稳定。
               </p>
             </dd>
           </dl>
         </div>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make</kbd></pre>
         <p>
-          Compilation is now complete. As discussed earlier, running the test
-          suite is not mandatory for the temporary tools here in this
-          chapter. To run the Bash test suite anyway, issue the following
-          command:
+          现在编译已经完成。之前说过，不要求为本章中所构建的临时工具运行测试套件。不过你仍然要测试 Bash 的话可以用下面的命令：
         </p>
-        <pre class="userinput">
-<kbd class="command">make tests</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make tests</kbd></pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make install</kbd></pre>
         <p>
-          Make a link for the programs that use <span class=
-          "command"><strong>sh</strong></span> for a shell:
+          为使用 <span class="command"><strong>sh</strong></span> 终端的程序创建一个软链接：
         </p>
-        <pre class="userinput">
-<kbd class="command">ln -sv bash /tools/bin/sh</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">ln -sv bash /tools/bin/sh</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <p>
-          Details on this package are located in <a class="xref" href=
+          关于这个软件包的详细资料请参见： <a class="xref" href=
           "../chapter06/bash.html#contents-bash" title=
-          "6.34.2.&nbsp;Contents of Bash">Section&nbsp;6.34.2, “Contents of
-          Bash.”</a>
+          "6.34.2.&nbsp;Bash 软件包内容">Section&nbsp;6.34.2, “Bash 软件包内容”</a>。
         </p>
       </div>
     </div>
@@ -141,18 +126,18 @@
           </p>
         </li>
         <li class="next">
-          <a accesskey="n" href="bison.html" title="Bison-3.4.1">Next</a>
+          <a accesskey="n" href="bison.html" title="Bison-3.3.2">Next</a>
           <p>
-            Bison-3.4.1
+            Bison-3.3.2
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter05.html" title=
-          "Chapter&nbsp;5.&nbsp;Constructing a Temporary System">Up</a>
+          "Chapter&nbsp;5.&nbsp;构建临时系统">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

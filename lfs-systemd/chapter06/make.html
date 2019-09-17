@@ -12,13 +12,13 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;6.&nbsp;Installing Basic System Software
+        Chapter&nbsp;6.&nbsp;安装基本的系统软件
       </h3>
       <ul>
         <li class="prev">
@@ -36,11 +36,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
@@ -50,74 +50,64 @@
       </h1>
       <div class="package" lang="en" xml:lang="en">
         <p>
-          The Make package contains a program for compiling packages.
+          Make 软件包包含一个用于编译软件的程序。
         </p>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Approximate build time:</strong>
-              <span class="segbody">0.6 SBU</span>
+              <strong class="segtitle">大致构建用时:</strong> <span class=
+              "segbody">0.5 SBU</span>
             </div>
             <div class="seg">
-              <strong class="segtitle">Required disk space:</strong>
-              <span class="segbody">13 MB</span>
+              <strong class="segtitle">所需磁盘空间:</strong> <span class=
+              "segbody">13 MB</span>
             </div>
           </div>
         </div>
       </div>
       <div class="installation" lang="en" xml:lang="en">
         <h2 class="sect2">
-          6.66.1. Installation of Make
+          6.66.1. 安装 Make
         </h2>
         <p>
-          Again, work around an error caused by glibc-2.27 and later:
+          再来一次，解决由 glibc-2.27 或更新版本 glibc 导致的错误：
         </p>
-        <pre class="userinput">
-<kbd class="command">sed -i '211,217 d; 219,229 d; 232 d' glob/glob.c</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">sed -i '211,217 d; 219,229 d; 232 d' glob/glob.c</kbd></pre>
         <p>
-          Prepare Make for compilation:
+          准备编译 Make：
         </p>
-        <pre class="userinput">
-<kbd class="command">./configure --prefix=/usr</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">./configure --prefix=/usr</kbd></pre>
         <p>
-          Compile the package:
+          编译软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make</kbd></pre>
         <p>
-          The test suite needs to know where supporting perl files are
-          located. We use an environment variable to accomplish this. To test
-          the results, issue:
+          测试套件需要知道支持 perl 文件的位置。我们使用一个环境变量来达成这个目的。用以下命令测试结果：
         </p>
-        <pre class="userinput">
-<kbd class="command">make PERL5LIB=$PWD/tests/ check</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">make PERL5LIB=$PWD/tests/ check</kbd></pre>
         <p>
-          Install the package:
+          安装软件包：
         </p>
-        <pre class="userinput">
-<kbd class="command">make install</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">make install</kbd></pre>
       </div>
       <div class="content" lang="en" xml:lang="en">
         <h2 class="sect2">
-          <a id="contents-make" name="contents-make"></a>6.66.2. Contents of
-          Make
+          <a id="contents-make" name="contents-make"></a>6.66.2. Make 软件包内容
         </h2>
         <div class="segmentedlist">
           <div class="seglistitem">
             <div class="seg">
-              <strong class="segtitle">Installed program:</strong>
-              <span class="segbody">make</span>
+              <strong class="segtitle">安装的程序:</strong> <span class=
+              "segbody">make</span>
             </div>
           </div>
         </div>
         <div class="variablelist">
           <h3>
-            Short Descriptions
+            简要介绍
           </h3>
           <table border="0" class="variablelist">
             <colgroup>
@@ -135,8 +125,7 @@
                 </td>
                 <td>
                   <p>
-                    Automatically determines which pieces of a package need
-                    to be (re)compiled and then issues the relevant commands
+                    自动检测软件包的哪些部分需要（重新）编译，然后运行相应命令
                   </p>
                 </td>
               </tr>
@@ -162,11 +151,11 @@
         </li>
         <li class="up">
           <a accesskey="u" href="chapter06.html" title=
-          "Chapter&nbsp;6.&nbsp;Installing Basic System Software">Up</a>
+          "Chapter&nbsp;6.&nbsp;安装基本的系统软件">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>

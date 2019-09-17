@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
     <title>
-      7.10.&nbsp;Systemd Usage and Configuration
+      7.10.&nbsp;systemd 的用法与配置
     </title>
     <link rel="stylesheet" type="text/css" href="../stylesheets/lfs.css" />
     <meta name="generator" content="DocBook XSL Stylesheets V1.78.1" />
@@ -12,97 +12,87 @@
     "text/css" media="print" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
-  <body class="lfs" id="lfs-9.0-systemd">
+  <body class="lfs" id="lfs-8.4-systemd">
     <div class="navheader">
       <h4>
-        Linux From Scratch - Version 9.0-systemd
+        Linux From Scratch （简体中文版） - Version 8.4-systemd
       </h4>
       <h3>
-        Chapter&nbsp;7.&nbsp;System Configuration
+        Chapter&nbsp;7.&nbsp;基本系统配置
       </h3>
       <ul>
         <li class="prev">
           <a accesskey="p" href="etcshells.html" title=
-          "Creating the /etc/shells File">Prev</a>
+          "创建 /etc/shells 文件">Prev</a>
           <p>
-            Creating the /etc/shells File
+            创建 /etc/shells 文件
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="../chapter08/chapter08.html" title=
-          "Making the LFS System Bootable">Next</a>
+          "让 LFS 系统可引导">Next</a>
           <p>
-            Making the LFS System Bootable
+            让 LFS 系统可引导
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "Chapter&nbsp;7.&nbsp;System Configuration">Up</a>
+          "Chapter&nbsp;7.&nbsp;基本系统配置">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
     <div class="sect1" lang="en" xml:lang="en">
       <h1 class="sect1">
         <a id="ch-scripts-systemd-custom" name=
-        "ch-scripts-systemd-custom"></a>7.10. Systemd Usage and Configuration
+        "ch-scripts-systemd-custom"></a>7.10. systemd 的用法与配置
       </h1>
       <div class="sect2" lang="en" xml:lang="en">
         <h2 class="sect2">
-          7.10.1. Basic Configuration
+          7.10.1. 基础配置
         </h2>
         <p>
-          The <code class="filename">/etc/systemd/system.conf</code> file
-          contains a set of options to control basic systemd operations. The
-          default file has all entries commented out with the default
-          settings indicated. This file is where the log level may be changed
-          as well as some basic logging settings. See the <code class=
-          "filename">systemd-system.conf(5)</code> manual page for details on
-          each configuration option.
+          <code class="filename">/etc/systemd/system.conf</code> 文件包含了大量的
+          systemd 控制命令。 假如未作任何的更改，文件中的所有行应该都是注释掉的，这代表了 systemd 正使用默认的运行方式。
+          这个文件中可以设置日志级别，可以修改日志的基本设置。所有设置项都可以在 man 手册的 <code class=
+          "filename">systemd-system.conf(5)</code> 中查看。
         </p>
       </div>
       <div class="sect2" lang="en" xml:lang="en">
         <h2 class="sect2">
-          7.10.2. Disabling Screen Clearing at Boot Time
+          7.10.2. 禁用启动时清屏
         </h2>
         <p>
-          The normal behavior for systemd is to clear the screen at the end
-          of the boot sequence. If desired, this behavior may be changed by
-          running the following command:
+          默认情况下，systemd 将会在系统启动快要结束的时候清屏。如不需要，使用以下操作禁用：
         </p>
-        <pre class="userinput">
-<kbd class="command">mkdir -pv /etc/systemd/system/getty@tty1.service.d
+        <pre class="userinput"><kbd class=
+        "command">mkdir -pv /etc/systemd/system/getty@tty1.service.d
 
 cat &gt; /etc/systemd/system/getty@tty1.service.d/noclear.conf &lt;&lt; EOF
 <code class="literal">[Service]
 TTYVTDisallocate=no</code>
-EOF</kbd>
-</pre>
+EOF</kbd></pre>
         <p>
-          The boot messages can always be reviewed by using the
-          <strong class="userinput"><code>journalctl -b</code></strong>
-          command as the root user.
+          拥有 root 权限的账户可以通过 <strong class="userinput"><code>journalctl
+          -b</code></strong> 查看启动信息。
         </p>
       </div>
       <div class="sect2" lang="en" xml:lang="en">
         <h2 class="sect2">
-          7.10.3. Disabling tmpfs for /tmp
+          7.10.3. 禁止 /tmp 使用 tmpfs
         </h2>
         <p>
-          By default, <code class="filename">/tmp</code> is created as a
-          tmpfs. If this is not desired, it can be overridden by the
-          following:
+          默认情况下，<code class="filename">/tmp</code> 使用 tmpfs
+          文件系统。如不需要，使用以下操作禁用：
         </p>
-        <pre class="userinput">
-<kbd class="command">ln -sfv /dev/null /etc/systemd/system/tmp.mount</kbd>
-</pre>
+        <pre class="userinput"><kbd class=
+        "command">ln -sfv /dev/null /etc/systemd/system/tmp.mount</kbd></pre>
         <p>
-          Alternatively, if a a separate partition for <code class=
-          "filename">/tmp</code> is desired, specify that partition in an
-          <code class="filename">/etc/fstab</code> entry.
+          或许，如果你需要一个单独的 <code class="filename">/tmp</code> 分区，那请在
+          <code class="filename">/etc/fstab</code> 条目中指定该分区。
         </p>
         <div class="admon warning">
           <img alt="[Warning]" src="../images/warning.png" />
@@ -110,20 +100,17 @@ EOF</kbd>
             Warning
           </h3>
           <p>
-            Do not create the symbolic link above if a separate partition is
-            used for <code class="filename">/tmp</code>. This will prevent
-            the root file system (/) from being remounted r/w and make the
-            system unusable when booted.
+            如果使用的是独立的 <code class="filename">/tmp</code>
+            分区，就不要创建上述链接。这将保护根（/）文件系统，使其在重新挂载后失去 r/w 权限，从而导致系统在启动后无法使用。
           </p>
         </div>
       </div>
       <div class="sect2" lang="en" xml:lang="en">
         <h2 class="sect2">
-          7.10.4. Configuring Automatic File Creation and Deletion
+          7.10.4. 配置自动创建和删除文件
         </h2>
         <p>
-          There are several services that create or delete files or
-          directories:
+          有这样几个服务可以建立或删除文件/目录：
         </p>
         <div class="itemizedlist">
           <ul>
@@ -145,82 +132,62 @@ EOF</kbd>
           </ul>
         </div>
         <p>
-          The system location for the configuration files is <code class=
-          "filename">/usr/lib/tmpfiles.d/*.conf</code>. The local
-          configuration files are in <code class=
-          "filename">/etc/tmpfiles.d</code>. Files in <code class=
-          "filename">/etc/tmpfiles.d</code> override files with the same name
-          in <code class="filename">/usr/lib/tmpfiles.d</code>. See
-          <code class="filename">tmpfiles.d(5)</code> manual page for file
-          format details.
+          系统配置文件在 <code class="filename">/usr/lib/tmpfiles.d/*.conf</code> 中。
+          本地配置文件在 <code class="filename">/etc/tmpfiles.d</code> 中。
+          <code class="filename">/etc/tmpfiles.d</code>中的文件会覆盖 <code class=
+          "filename">/usr/lib/tmpfiles.d</code> 中相同名称的文件。
+          （译者注：首先读取系统范围配置文件，再读取用户范围配置文件，用户范围配置文件会覆盖系统范围配置文件的相同部分。）可以在 man 手册的
+          <code class="filename">tmpfiles.d(5)</code> 中获取文件格式详情。
         </p>
         <p>
-          Note that the syntax for the <code class=
-          "filename">/usr/lib/tmpfiles.d/*.conf</code> files can be
-          confusing. For example, the default deletion of files in the /tmp
-          directory is located in <code class=
-          "filename">/usr/lib/tmpfiles.d/tmp.conf</code> with the line:
+          注意，<code class="filename">/usr/lib/tmpfiles.d/*.conf</code>
+          文件的语法比较容易搞错。例如，默认对于 /tmp 目录下文件的删除，源自 <code class=
+          "filename">/usr/lib/tmpfiles.d/tmp.conf</code> 中的这一行：
         </p>
-        <pre class="screen">
-q /tmp 1777 root root 10d
-</pre>
+        <pre class="screen">q /tmp 1777 root root 10d</pre>
         <p>
-          The type field, q, discusses creating a subvolume with quotas which
-          is really only applicable to btrfs filesystems. It references type
-          v which in turn references type d (directory). This then creates
-          the specified directory if is is not present and adjusts the
-          permissions and ownership as specified. Contents of the directory
-          will be subject to time based cleanup if the age argument is
-          specified.
+          类型字段 q，用于创建带配额的子卷，仅适用于 btrfs 文件系统。它会引用类型 v，然后引用类型 d
+          （目录）。然后创建指定的目录，如果它原先不存在的话，并为其调整权限，指定所有权。
         </p>
         <p>
-          If the default parameters are not desired, then the file should be
-          copied to <code class="filename">/etc/tmpfiles.d</code> and edited
-          as desired. For example:
+          如果默认参数不能达到要求，那就复制文件至 <code class="filename">/etc/tmpfiles.d</code>
+          按照自己的需求修改它。复制示例：
         </p>
-        <pre class="userinput">
-<kbd class="command">mkdir -p /etc/tmpfiles.d
-cp /usr/lib/tmpfiles.d/tmp.conf /etc/tmpfiles.d</kbd>
-</pre>
+        <pre class="userinput"><kbd class="command">mkdir -p /etc/tempfiles.d
+cp /usr/lib/tmpfiles.d/tmp.conf /etc/tempfiles.d</kbd></pre>
       </div>
       <div class="sect2" lang="en" xml:lang="en">
         <h2 class="sect2">
-          7.10.5. Overriding Default Services Behavior
+          7.10.5. 覆盖默认服务的行为
         </h2>
         <p>
-          The parameter of a unit can be overriden by creating a directory
-          and a configuration file in <code class=
-          "filename">/etc/systemd/system</code>. For example:
+          可以通过在 <code class="filename">/etc/systemd/system</code>
+          中创建目录和配置文件来覆盖单元的参数。例如：
         </p>
-        <pre class="userinput">
-<kbd class="command">mkdir -pv /etc/systemd/system/foobar.service.d
+        <pre class="userinput"><kbd class=
+        "command">mkdir -pv /etc/systemd/system/foobar.service.d
 
 cat &gt; /etc/systemd/system/foobar.service.d/foobar.conf &lt;&lt; EOF
 <code class="literal">[Service]
 Restart=always
 RestartSec=30</code>
-EOF</kbd>
-</pre>
+EOF</kbd></pre>
         <p>
-          See <code class="filename">systemd.unit(5)</code> manual page for
-          more information. After creating the configuration file, run
-          <strong class="userinput"><code>systemctl
-          daemon-reload</code></strong> and <strong class=
-          "userinput"><code>systemctl restart foobar</code></strong> to
-          activate the changes to a service.
+          可以在 man 手册的 <code class="filename">systemd.unit(5)</code>
+          中查询更多信息。创建好文件之后，请运行 <strong class="userinput"><code>systemctl
+          daemon-reload</code></strong> 和 <strong class=
+          "userinput"><code>systemctl restart foobar</code></strong> 激活所做更改。
         </p>
       </div>
       <div class="sect2" lang="en" xml:lang="en">
         <h2 class="sect2">
-          7.10.6. Debugging the Boot Sequence
+          7.10.6. 调试启动顺序
         </h2>
         <p>
-          Rather than plain shell scripts used in SysVinit or BSD style init
-          systems, systemd uses a unified format for different types of
-          startup files (or units). The command <span class=
-          "command"><strong>systemctl</strong></span> is used to enable,
-          disable, control state, and obtain status of unit files. Here are
-          some examples of frequently used commands:
+          相较于 SysVinit 或 BSD 风格的初始化使用的是简单的 shell 脚本，而 systemd
+          对于不同类型的启动文件（或单元）使用的是统一的格式。<span class=
+          "command"><strong>systemctl</strong></span>
+          命令可用于用于，启用，禁用，控制状态，和获取单元文件的状态。以下是一些常用命令的示例：
         </p>
         <div class="itemizedlist">
           <ul>
@@ -228,37 +195,30 @@ EOF</kbd>
               <p>
                 <span class="command"><strong>systemctl list-units -t
                 <em class="replaceable"><code>&lt;service&gt;</code></em>
-                [--all]</strong></span>: lists loaded unit files of type
-                service.
+                [--all]</strong></span>：列出加载的服务类型的单元文件。
               </p>
             </li>
             <li class="listitem">
               <p>
                 <span class="command"><strong>systemctl list-units -t
                 <em class="replaceable"><code>&lt;target&gt;</code></em>
-                [--all]</strong></span>: lists loaded unit files of type
-                target.
+                [--all]</strong></span>：列出加载的目标类型的单元文件。
               </p>
             </li>
             <li class="listitem">
               <p>
                 <span class="command"><strong>systemctl show -p Wants
                 <em class=
-                "replaceable"><code>&lt;multi-user.target&gt;</code></em></strong></span>:
-                shows all units that depend on the multi-user target. Targets
-                are special unit files that are anogalous to runlevels under
-                SysVinit.
+                "replaceable"><code>&lt;multi-user.target&gt;</code></em></strong></span>：显示所有依赖多用户的目标。目标是与
+                SysVinit 运行级不同的特殊单元文件。
               </p>
             </li>
             <li class="listitem">
               <p>
                 <span class="command"><strong>systemctl status <em class=
-                "replaceable"><code>&lt;servicename.service&gt;</code></em></strong></span>:
-                shows the status of the servicename service. The .service
-                extension can be omitted if there are no other unit files
-                with the same name, such as .socket files (which create a
-                listening socket that provides similar functionality to
-                inetd/xinetd).
+                "replaceable"><code>&lt;servicename.service&gt;</code></em></strong></span>：显示服务名称服务的状态。扩展名
+                .service 在没有同名单元文件，例如 .socket（创建监听套接字功能与 inetd/xinetd
+                相似的）文件，的情况下可以省略。
               </p>
             </li>
           </ul>
@@ -266,46 +226,39 @@ EOF</kbd>
       </div>
       <div class="sect2" lang="en" xml:lang="en">
         <h2 class="sect2">
-          7.10.7. Working with the Systemd Journal
+          7.10.7. 使用 systemd 日志
         </h2>
         <p>
-          Logging on a system booted with systemd is handled with
-          systemd-journald (by default), rather than a typical unix syslog
-          daemon. You can also add a normal syslog daemon and have both work
-          side by side if desired. The systemd-journald program stores
-          journal entries in a binary format rather than a plain text log
-          file. To assist with parsing the file, the command <span class=
-          "command"><strong>journalctl</strong></span> is provided. Here are
-          some examples of frequently used commands:
+          systemd 启动的系统上的日志记录（默认）由 systemd-journald 处理的，而不是传统的 unix syslog
+          守护程序。如果需要，你也可以添加 syslog 的守护进程与之并行运作。systemd-journald
+          程序使用二进制形式存储日志条目而非纯文本的日志文件。为了帮助解析文件，提供了 <span class=
+          "command"><strong>journalctl</strong></span> 命令。以下是一些常用命令的示例：
         </p>
         <div class="itemizedlist">
           <ul>
             <li class="listitem">
               <p>
-                <span class="command"><strong>journalctl -r</strong></span>:
-                shows all contents of the journal in reverse chronological
-                order.
+                <span class="command"><strong>journalctl
+                -r</strong></span>：按时间逆序现实所有的内容。
               </p>
             </li>
             <li class="listitem">
               <p>
                 <span class="command"><strong>journalctl -u <em class=
-                "replaceable"><code>UNIT</code></em></strong></span>: shows
-                the journal entries associated with the specified UNIT file.
+                "replaceable"><code>UNIT</code></em></strong></span>：显示与指定
+                UNIT 相关的日志条目。
               </p>
             </li>
             <li class="listitem">
               <p>
                 <span class="command"><strong>journalctl -b[=ID]
-                -r</strong></span>: shows the journal entries since last
-                successful boot (or for boot ID) in reverse chronological
-                order.
+                -r</strong></span>：按时间逆序显示自上次成功启动（或启动 ID）的日志条目。
               </p>
             </li>
             <li class="listitem">
               <p>
-                <span class="command"><strong>journalctl -f</strong></span>:
-                povides functionality similar to tail -f (follow).
+                <span class="command"><strong>journalctl
+                -f</strong></span>：提供类似与 tail -f (follow) 类似的功能。
               </p>
             </li>
           </ul>
@@ -313,65 +266,50 @@ EOF</kbd>
       </div>
       <div class="sect2" lang="en" xml:lang="en">
         <h2 class="sect2">
-          7.10.8. Long Running Processes
+          7.10.8. 长时间运行进程
         </h2>
         <p>
-          Beginning with systemd-230, all user processes are killed when a
-          user session is ended, even if nohup is used, or the process uses
-          the <code class="function">daemon()</code> or <code class=
-          "function">setsid()</code> functions. This is a deliberate change
-          from a historically permissive environment to a more restrictive
-          one. The new behavior may cause issues if you depend on long
-          running programs (e.g., <span class=
-          "command"><strong>screen</strong></span> or <span class=
-          "command"><strong>tmux</strong></span>) to remain active after
-          ending your user session. There are three ways to enable lingering
-          processes to remain after a user session is ended.
+          自 systemd-230 开始，用户的所有进程都会随着用户会话的结束而被杀死，即使你用了 nohup，或进程使用了
+          <code class="function">daemon()</code> 或是 <code class=
+          "function">setsid()</code>
+          功能。这是为了是让原先宽松的环境变得更为严格而故意为之的。如果你依赖长时间运行的程序（例如，<span class=
+          "command"><strong>screen</strong></span> 或是 <span class=
+          "command"><strong>tmux</strong></span>），需要在你结束用户会话后保持运作。有三个方法能让进程保持在用户会话结束后仍然逗留。
         </p>
         <div class="itemizedlist">
           <ul>
             <li class="listitem">
               <p>
-                <span class="emphasis"><em>Enable process lingering for only
-                selected users</em></span>: Normal users have permission to
-                enable process lingering with the command <span class=
-                "command"><strong>loginctl enable-linger</strong></span> for
-                their own user. System administrators can use the same
-                command with a <em class="parameter"><code>user</code></em>
-                argument to enable for a user. That user can then use the
-                <span class="command"><strong>systemd-run</strong></span>
-                command to start long running processes. For example:
-                <span class="command"><strong>systemd-run --scope --user
-                /usr/bin/screen</strong></span>. If you enable lingering for
-                your user, the user@.service will remain even after all login
-                sessions are closed, and will automatically start at system
-                boot. This has the advantage of explicitly allowing and
-                disallowing processes to run after the user session has
-                ended, but breaks backwards compatibility with tools like
-                <span class="command"><strong>nohup</strong></span> and
-                utilities that use <code class="function">deamon()</code>.
+                <span class=
+                "emphasis"><em>仅为需要的用户启用进程逗留</em></span>：正常用户有权使用命令
+                <span class="command"><strong>loginctl
+                enable-linger</strong></span> 来为其启用进程逗留。系统管理员可以使用相同的命令伴随着
+                <em class="parameter"><code>user</code></em>
+                参数，来帮某个用户实现。用户可以在之后使用命令 <span class=
+                "command"><strong>systemd-run</strong></span>
+                来启动长时间运行进程。举个例子：<span class="command"><strong>systemd-run
+                --scope --user
+                /usr/bin/screen</strong></span>。如果你为你的用户启用了逗留，user@.service
+                会在所有的登录会话被关闭后仍然保留，并在系统启动后自动启动。这样做的好处是明确地表明是否允许进程在用户会话结束后继续运行，但却打破了对于类似于
+                <span class="command"><strong>nohup</strong></span> 之类工具和使用
+                <code class="function">deamon()</code> 的公用方法的向后兼容。
               </p>
             </li>
             <li class="listitem">
               <p>
-                <span class="emphasis"><em>Enable system-wide process
-                lingering</em></span>: You can set <em class=
-                "parameter"><code>KillUserProcesses=no</code></em> in
-                <code class="filename">/etc/logind.conf</code> to enable
-                process lingering globally for all users. This has the
-                benefit of leaving the old method available to all users at
-                the expense of explicit control.
+                <span class="emphasis"><em>启用系统范围的进程逗留</em></span>：你可以在
+                <code class="filename">/etc/logind.conf</code> 中设置 <em class=
+                "parameter"><code>KillUserProcesses=no</code></em>
+                来全局地为每个用户启用进程逗留。这在牺牲明确控制的同时，带来了将旧方法提供给所有用户的好处。
               </p>
             </li>
             <li class="listitem">
               <p>
-                <span class="emphasis"><em>Disable at build-time</em></span>:
-                You can enable lingering by default while building systemd by
-                adding the switch <em class=
-                "parameter"><code>-Ddefault-kill-user-processes=no</code></em>
-                to the <span class="command"><strong>meson</strong></span>
-                command for systemd. This completely disables the ability of
-                systemd to kill user processes at session end.
+                <span class="emphasis"><em>在构建时禁用</em></span>：你可以通过在构建
+                systemd 时向命令 <span class=
+                "command"><strong>meson</strong></span> 添加 <em class=
+                "parameter"><code>-Ddefault-kill-user-processes=no</code></em>，以此来默认启用逗留。这会使
+                systemd 完全丧失在用户会话结束后杀死进程的能力。
               </p>
             </li>
           </ul>
@@ -382,25 +320,25 @@ EOF</kbd>
       <ul>
         <li class="prev">
           <a accesskey="p" href="etcshells.html" title=
-          "Creating the /etc/shells File">Prev</a>
+          "创建 /etc/shells 文件">Prev</a>
           <p>
-            Creating the /etc/shells File
+            创建 /etc/shells 文件
           </p>
         </li>
         <li class="next">
           <a accesskey="n" href="../chapter08/chapter08.html" title=
-          "Making the LFS System Bootable">Next</a>
+          "让 LFS 系统可引导">Next</a>
           <p>
-            Making the LFS System Bootable
+            让 LFS 系统可引导
           </p>
         </li>
         <li class="up">
           <a accesskey="u" href="chapter07.html" title=
-          "Chapter&nbsp;7.&nbsp;System Configuration">Up</a>
+          "Chapter&nbsp;7.&nbsp;基本系统配置">Up</a>
         </li>
         <li class="home">
           <a accesskey="h" href="../index.html" title=
-          "Linux From Scratch - Version 9.0-systemd">Home</a>
+          "Linux From Scratch （简体中文版） - Version 8.4-systemd">Home</a>
         </li>
       </ul>
     </div>
